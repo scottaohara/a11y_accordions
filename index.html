@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en-us" class="no-js">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta charset="utf-8" />
+    <title>
+      A11Y Accordions
+    </title>
+    <link rel="stylesheet" href="assets/a11y-accordion.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <style>
+        body, html { font-family: arial; font-size: 16px; margin: 0; padding: 0; }
+        h1, h2, h3, h4 ,h5 ,h6, p { margin-top: 0; }
+        hr { margin: 40px 0; }
+        p, li { line-height: 1.4; margin: 0 0 16px; }
+        button, html [type="button"], [type="reset"], [type="submit"] { -webkit-appearance: button; cursor: pointer; font-family: inherit; font-style: inherit; }
+         input[type="submit"]::-moz-focus-inner, button[type="submit"]::-moz-focus-inner, button:-moz-focusring, input:-moz-focusring { outline: 0; }
+        button::-moz-focus-inner, input::-moz-focus-inner { border: 0; padding: 0; }
+        code,kbd { background: #efefef; font-size: .825em; padding: 2px 4px; display: inline-block; line-height: 1; }
+        p:last-child, li:last-child { margin-bottom: 0; }
+        .content-area { padding: 20px; }
+        .explanation { background: #fafafa; margin-bottom: 40px; font-size: 1.1em; padding: 40px; }
+        .page { max-width: 1200px; margin: auto; padding-bottom: 40px; }
+    </style>
+    <script>
+      // remove no-js and add 'js' & 'has-js' to the HTML
+      document.documentElement.className = document.documentElement.className.replace('no-js', " ");
+      document.documentElement.className += ' js has-js ';
+    </script>
+  </head>
+  <body>
+
+    <div class="page">
+      <div class="content-area">
+        <h1 class="txt-up-3">
+          Generated Accordion Example
+        </h1>
+
+        <div class="accordion" data-action="is-accordion" data-multi-open="true" id="accGen">
+          <div class="js-acc__panel accordion__panel" data-tab-label="wat">
+            <p>
+              "But I must explain to you how all this mistaken idea of denouncing pleasure
+               and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, <a href="#!">because it is pain, but because occasionally</a> circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it? But who has any right to find fault with a man who chooses to enjoy a pleasure that has no annoying consequences, or one who avoids a pain that produces no resultant pleasure?"
+            </p>
+          </div>
+
+          <h2>
+            Tab Heading
+          </h2>
+          <div class="js-acc__panel accordion__panel">
+            <h3>Heading Title</h3>
+            <p>
+              "But I must explain to you how all this mistaken idea of denouncing pleasure
+               and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, <a href="#!">because it is pain, but because occasionally</a> circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it? But who has any right to find fault with a man who chooses to enjoy a pleasure that has no annoying consequences, or one who avoids a pain that produces no resultant pleasure?"
+            </p>
+          </div>
+          <div class="js-acc__panel accordion__panel">
+            <p>
+              "But I must explain to you how all this mistaken idea of denouncing pleasure
+               and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, <a href="#!">because it is pain, but because occasionally</a> circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it? But who has any right to find fault with a man who chooses to enjoy a pleasure that has no annoying consequences, or one who avoids a pain that produces no resultant pleasure?"
+            </p>
+          </div>
+        </div>
+
+        <hr />
+
+        <h2 class="txt-up-3">
+          Hard-coded Accordion Example
+        </h2>
+
+        <div class="accordion" data-action="is-accordion" id="accStatic">
+          <a href="#acc_panel_6" class="js-acc__trigger accordion__trigger">
+            Trigger 6
+          </a>
+          <div class="js-acc__panel accordion__panel" id="acc_panel_6">
+            <p>
+              Here's some text. You will read this now. Or then. I guess then because you're done reading at this point, exactly.
+            </p>
+          </div>
+          <a href="#acc_panel_7" class="js-acc__trigger accordion__trigger">
+            Trigger 7
+          </a>
+          <div class="js-acc__panel accordion__panel" id="acc_panel_7">
+            <p>
+              "But I must explain to you how all this mistaken idea of denouncing pleasure
+               and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, <a href="#!">because it is pain, but because occasionally</a> circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it? But who has any right to find fault with a man who chooses to enjoy a pleasure that has no annoying consequences, or one who avoids a pain that produces no resultant pleasure?"
+            </p>
+          </div>
+          <a href="#acc_panel_8" class="js-acc__trigger accordion__trigger">
+            Trigger 8
+          </a>
+          <div class="js-acc__panel accordion__panel" id="acc_panel_8" data-showbydefault="true">
+            <p>
+              "This again... But I must explain to you how all this mistaken idea of denouncing pleasure
+               and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, <a href="#!">because it is pain, but because occasionally</a> circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it? But who has any right to find fault with a man who chooses to enjoy a pleasure that has no annoying consequences, or one who avoids a pain that produces no resultant pleasure?"
+            </p>
+          </div>
+        </div>
+
+
+        <hr />
+
+        <h2 class="txt-up-3">
+          Hard-coded accordion with internal generated accordion
+        </h2>
+
+        <div class="accordion" data-action="is-accordion" id="accS2">
+          <a href="#accs2_panel_1" class="js-acc__trigger accordion__trigger">
+            First Trigger
+          </a>
+          <div class="js-acc__panel accordion__panel" id="accs2_panel_1">
+            <p>
+              Here's some text. You will read this now. Or then. I guess then because you're done reading at this point, exactly.
+            </p>
+          </div>
+          <a href="#accs2_panel_2" class="js-acc__trigger accordion__trigger">
+            Second Trigger
+          </a>
+          <div class="js-acc__panel accordion__panel" id="accs2_panel_2">
+            <p>
+              Here's an intro paragraph. But oh no. There's an accordion
+              within an accordion!
+            </p>
+
+
+            <div class="accordion" data-action="is-accordion" id="autoGen">
+              <div class="js-acc__panel accordion__panel" data-tab-label="Sub Trigger 1">
+                <p>
+                  First block of content with <a href="#!">a focusable element</a>.
+                </p>
+              </div>
+
+              <h2>
+                Sub Trigger 2
+              </h2>
+              <div class="js-acc__panel accordion__panel">
+                <h3>
+                  A Heading goes here
+                </h3>
+                <p>
+                  Another block of content with <a href="#!">a focusable element</a>.
+                </p>
+              </div>
+            </div> <!-- /#autoGen -->
+
+
+          </div>
+          <a href="#accs2_panel_3" class="js-acc__trigger accordion__trigger">
+            Third Trigger
+          </a>
+          <div class="js-acc__panel accordion__panel" id="accs2_panel_3">
+            <p>
+              "This again... But I must explain to you how all this mistaken idea of denouncing pleasure
+               and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, <a href="#!">because it is pain, but because occasionally</a> circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it? But who has any right to find fault with a man who chooses to enjoy a pleasure that has no annoying consequences, or one who avoids a pain that produces no resultant pleasure?"
+            </p>
+          </div>
+        </div>
+      </div> <!-- /.content-area -->
+
+    </div> <!-- /.page -->
+
+    <script src="http://code.jquery.com/jquery-2.2.1.min.js"></script>
+    <script src="assets/a11y-accordion.js"></script>
+
+  </body>
+</html>

@@ -1,0 +1,43 @@
+.accordion__trigger,
+button.accordion__trigger {
+  background-color: #f8f8f8;
+  border: 0;
+  border-bottom: 1px solid #444;
+  font-size: inherit;
+  color: #4464c2;
+  cursor: pointer;
+  display: block;
+  padding: 0.5em 1em;
+  text-decoration: none;
+  text-transform: none;
+  outline: none;
+}
+.accordion__trigger.is-active {
+  background-color: #304c9d;
+  color: #fff;
+}
+.accordion__trigger:hover,
+.accordion__trigger:focus {
+  background-color: #6589f2;
+  color: #fff;
+  outline: none;
+}
+.accordion__panel {
+  background-color: inherit;
+  display: none;
+  padding: 20px;
+}
+.no-js .accordion__trigger {
+  color: inherit;
+}
+.no-js .accordion__panel {
+  display: block;
+}
+
+button.accordion__trigger {
+  -webkit-appearance: none;
+  box-shadow: none;
+  border-radius: 0;
+  text-align: left;
+  width: 100%;
+}
