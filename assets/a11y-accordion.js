@@ -275,34 +275,35 @@
           // it needs to close, but still become the currently active
           // and tabindexable element
           if ( $e.hasClass('was-active') ) {
+            setTimeout(function () {
+              $target.attr('aria-hidden', 'true').slideUp();
 
-            $target.attr('aria-hidden', 'true').slideUp();
+              $self.find('> ' + accTrigger).removeClass('is-active').attr(setFalse);
 
-            $self.find('> ' + accTrigger).removeClass('is-active').attr(setFalse);
+              $e.attr({
+                'aria-expanded': 'false',
+                'aria-selected': 'true',
+                'tabindex': '0'
+              }).removeClass('was-active').focus();
 
-            $e.attr({
-              'aria-expanded': 'false',
-              'aria-selected': 'true',
-              'tabindex': '0'
-            }).removeClass('was-active').focus();
-
-            return;
-
+              return;
+            }, 100);
           }
 
           if ( !$e.hasClass('is-active') ) {
+            setTimeout(function () {
+              $target.attr({'aria-hidden': 'false'}).slideDown();
 
-            $target.attr({'aria-hidden': 'false'}).slideDown();
+              $self.find('> ' + accTrigger).removeClass('is-active').attr(setFalse);
 
-            $self.find('> ' + accTrigger).removeClass('is-active').attr(setFalse);
+              $e.attr({
+                'tabindex': '0',
+                'aria-selected': 'true',
+                'aria-expanded': 'true'
+              }).addClass('is-active').focus();
 
-            $e.attr({
-              'tabindex': '0',
-              'aria-selected': 'true',
-              'aria-expanded': 'true'
-            }).addClass('is-active').focus();
-
-            return;
+              return;
+            }, 100);
 
           }
 
@@ -313,15 +314,16 @@
           // and a user activates it again, then it should
           // close that panel and deactivate the tab
           if ( $e.hasClass('is-active') ) {
+            setTimeout(function () {
+              $target.attr({ 'aria-hidden': 'true' }).slideUp();
 
-            $target.attr({ 'aria-hidden': 'true' }).slideUp();
+              $e.attr({
+                'aria-expanded': 'false',
+                'tabindex': '0'
+              }).removeClass('is-active');
 
-            $e.attr({
-              'aria-expanded': 'false',
-              'tabindex': '0'
-            }).removeClass('is-active');
-
-            return;
+              return;
+            }, 100);
 
           }
 
@@ -392,17 +394,17 @@
               case 32: // space bar
                 e.preventDefault();
 
-                  var elem,
-                    evt = e ? e:event;
+                  // var elem,
+                  //   evt = e ? e:event;
 
-                  if (evt.srcElement)  elem = evt.srcElement;
-                  else if (evt.target) elem = evt.target;
+                  // if (evt.srcElement)  elem = evt.srcElement;
+                  // else if (evt.target) elem = evt.target;
 
-                  if ( elem.tagName === 'A') {
-                    panelReveal( e );
-                  }
+                  // if ( elem.tagName === 'A') {
+                  //   panelReveal( e );
+                  // }
 
-                  // panelReveal( e );
+                  panelReveal( e );
 
                 break;
 
