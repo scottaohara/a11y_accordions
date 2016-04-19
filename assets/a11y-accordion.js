@@ -65,7 +65,7 @@
             var $panelNum = 1;
 
             // find the panels within this accordion instance
-            $self.find(accPanel).each( function () {
+            $self.find('> ' + accPanel).each( function () {
               var $this = $(this);
 
               // now create an ID based on the instance ID + _panel_ + a randomly generated #
@@ -119,7 +119,7 @@
 
           // find the panel triggers within each instance
           // generate the appropriate attributes and values
-          $self.find(accTrigger).each( function () {
+          $self.find('> ' + accTrigger).each( function () {
 
             var $this = $(this),
                 $getURL = $this.attr('href') || $this.attr('data-href'),
@@ -138,7 +138,7 @@
 
 
           // setup the panels
-          $self.find(accPanel).each( function () {
+          $self.find('> ' + accPanel).each( function () {
 
             var $this = $(this);
 
@@ -179,7 +179,7 @@
           // needs to be focusable in the tablist
           if ( !$self.hasClass('has-default') ) {
 
-            $self.find(accTrigger).first().attr({ 'tabindex': '0' });
+            $self.find('> ' + accTrigger).first().attr({ 'tabindex': '0' });
 
           }
 
@@ -192,9 +192,9 @@
 
           if ( $self.attr('data-showall') === 'true' ) {
 
-            $self.find(accTrigger).attr('aria-expanded', 'true');
-            $self.find(accPanel).attr('aria-hidden', 'false').show();
-            $self.find(accTrigger).first().attr('aria-selected', 'true').addClass('is-active');
+            $self.find('> ' + accTrigger).attr('aria-expanded', 'true');
+            $self.find('> ' + accPanel).attr('aria-hidden', 'false').show();
+            $self.find('> ' + accTrigger).first().attr('aria-selected', 'true').addClass('is-active');
 
           }
 
@@ -212,7 +212,7 @@
               $target = $('#'+$getTarget);
 
 
-          $self.find(accTrigger).attr(setFalse).removeClass('is-active');
+          $self.find('> ' + accTrigger).attr(setFalse).removeClass('is-active');
 
 
           // run the check expanded function
@@ -229,7 +229,7 @@
         // need this class for later
         checkExpanded = function () {
 
-          $self.find(accTrigger).each( function () {
+          $self.find('> ' + accTrigger).each( function () {
             var $this = $(this);
 
             if ( $this.attr('aria-expanded') === 'true' ) {
@@ -258,9 +258,9 @@
           // opened tags need to close
           if ( !$self.attr('data-multi-open') ) {
 
-            $self.find(accPanel).attr({ 'aria-hidden': 'true' }).slideUp();
+            $self.find('> ' + accPanel).attr({ 'aria-hidden': 'true' }).slideUp();
 
-            $self.find(accTrigger).attr({
+            $self.find('> ' + accTrigger).attr({
               'aria-selected': 'false',
               'aria-expanded': 'false',
               'tabindex': '-1'
@@ -279,7 +279,7 @@
 
             $target.attr('aria-hidden', 'true').slideUp();
 
-            $self.find(accTrigger).removeClass('is-active').attr(setFalse);
+            $self.find('> ' + accTrigger).removeClass('is-active').attr(setFalse);
 
             $e.attr({
               'aria-expanded': 'false',
@@ -296,7 +296,7 @@
 
             $target.attr({ 'aria-hidden': 'false' }).slideDown();
 
-            $self.find(accTrigger).removeClass('is-active').attr(setFalse);
+            $self.find('> ' + accTrigger).removeClass('is-active').attr(setFalse);
 
             $e.attr({
               'tabindex': '0',
@@ -449,10 +449,10 @@
 
 
         // Events
-        $self.find(accTrigger).on( 'click', panelReveal.bind(this) );
-        $self.find(accPanel).on( 'click', panelClick.bind(this) );
-        $self.find(accTrigger).on( 'keydown', keytrolls.bind(this) );
-        $self.find(accPanel).on( 'keydown', keytrolls.bind(this) );
+        $self.find('> ' + accTrigger).on( 'click', panelReveal.bind(this) );
+        $self.find('> ' + accPanel).on( 'click', panelClick.bind(this) );
+        $self.find('> ' + accTrigger).on( 'keydown', keytrolls.bind(this) );
+        $self.find('> ' + accPanel).on( 'keydown', keytrolls.bind(this) );
 
       }); // end: return this.each()
     }
