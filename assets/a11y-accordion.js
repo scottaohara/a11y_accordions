@@ -257,16 +257,14 @@
           // if not, then when a new tab is opened, previously
           // opened tags need to close
           if ( !$self.attr('data-multi-open') ) {
-            $self.find(accPanel)
-               .attr({ 'aria-hidden': 'true' }).slideUp();
 
+            $self.find(accPanel).attr({ 'aria-hidden': 'true' }).slideUp();
 
-            $self.find(accTrigger)
-               .attr({
-                'aria-selected': 'false',
-                'aria-expanded': 'false',
-                'tabindex': '-1'
-              });
+            $self.find(accTrigger).attr({
+              'aria-selected': 'false',
+              'aria-expanded': 'false',
+              'tabindex': '-1'
+            });
           }
 
 
