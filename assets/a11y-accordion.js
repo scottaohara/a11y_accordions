@@ -60,12 +60,12 @@
           // check to see if there are any accTriggers,
           // if not, they need to be generated
           if ( !$self.find('> ' + accTrigger).length ) {
+
             // start a counter
             var $panelNum = 1;
 
             // find the panels within this accordion instance
-            $self.find('> ' + accPanel).each( function () {
-
+            $self.find(accPanel).each( function () {
               var $this = $(this);
 
               // now create an ID based on the instance ID + _panel_ + a randomly generated #
@@ -101,7 +101,7 @@
         setupAcc = function () {
 
           // setup the component to have a role of tablist
-          $self.attr({'role': 'tablist'});
+          $self.attr({ 'role': 'tablist' });
 
           // if there was a heading set for the no-js solution (there should have been)
           // then it can be removed because we've already grabbed the text from it
@@ -111,13 +111,15 @@
           // if an accordion can have multiple panels opened at a time,
           // then add this aria attribute
           if ( $self.attr('data-multi-open') ) {
+
             $self.attr('aria-multiselectable', 'true');
+
           }
 
 
           // find the panel triggers within each instance
           // generate the appropriate attributes and values
-          $self.find('> ' + accTrigger).each( function () {
+          $self.find(accTrigger).each( function () {
 
             var $this = $(this),
                 $getURL = $this.attr('href') || $this.attr('data-href'),
@@ -136,7 +138,7 @@
 
 
           // setup the panels
-          $self.find('>' + accPanel).each( function () {
+          $self.find(accPanel).each( function () {
 
             var $this = $(this);
 
@@ -152,8 +154,9 @@
             // then update the paired trigger's attributes to
             // show it as active/selected
             if ( $this.attr('data-showbydefault') ) {
+
               // set the appropriate aria attribute values
-              $this.attr({'aria-hidden': 'false'}).show(); // show this by default
+              $this.attr({ 'aria-hidden': 'false' }).show(); // show this by default
 
               // and set the corresponding trigger to have
               // the correct attribute values as well
@@ -176,7 +179,7 @@
           // needs to be focusable in the tablist
           if ( !$self.hasClass('has-default') ) {
 
-            $self.find('> ' + accTrigger).first().attr({'tabindex': '0'});
+            $self.find(accTrigger).first().attr({ 'tabindex': '0' });
 
           }
 
@@ -188,26 +191,12 @@
         showAllSetup = function () {
 
           if ( $self.attr('data-showall') === 'true' ) {
-            $self.find('> ' + accTrigger).attr('aria-expanded', 'true');
-            $self.find('> ' + accPanel).attr('aria-hidden', 'false').show();
-            $self.find('> ' + accTrigger).first().attr('aria-selected', 'true').addClass('is-active');
+
+            $self.find(accTrigger).attr('aria-expanded', 'true');
+            $self.find(accPanel).attr('aria-hidden', 'false').show();
+            $self.find(accTrigger).first().attr('aria-selected', 'true').addClass('is-active');
+
           }
-
-        },
-
-
-        // check to see if a panel was previously expanded
-        // as that means it used to be active, and we'll
-        // need this class for later
-        checkExpanded = function () {
-
-          $self.find('> ' + accTrigger).each( function () {
-            var $this = $(this);
-
-            if ( $this.attr('aria-expanded') === 'true' ) {
-              $this.addClass('was-active');
-            }
-          });
 
         },
 
@@ -223,7 +212,7 @@
               $target = $('#'+$getTarget);
 
 
-          $self.find('> ' + accTrigger).attr(setFalse).removeClass('is-active');
+          $self.find(accTrigger).attr(setFalse).removeClass('is-active');
 
 
           // run the check expanded function
@@ -232,9 +221,24 @@
 
           $target.attr(setTrue).addClass('is-active').removeClass('was-active');
 
-
         },
 
+
+        // check to see if a panel was previously expanded
+        // as that means it used to be active, and we'll
+        // need this class for later
+        checkExpanded = function () {
+
+          $self.find(accTrigger).each( function () {
+            var $this = $(this);
+
+            if ( $this.attr('aria-expanded') === 'true' ) {
+              $this.addClass('was-active');
+            }
+
+          });
+
+        },
 
 
         // trigger logic
@@ -253,17 +257,16 @@
           // if not, then when a new tab is opened, previously
           // opened tags need to close
           if ( !$self.attr('data-multi-open') ) {
+            $self.find(accPanel)
+               .attr({ 'aria-hidden': 'true' }).slideUp();
 
-            $self.find('> ' + accPanel).attr({
-               'aria-hidden': 'true'
-             }).slideUp();
 
-            $self.find('> ' + accTrigger).attr({
-              'aria-selected': 'false',
-              'aria-expanded': 'false',
-              'tabindex': '-1'
-            });
-
+            $self.find(accTrigger)
+               .attr({
+                'aria-selected': 'false',
+                'aria-expanded': 'false',
+                'tabindex': '-1'
+              });
           }
 
 
@@ -275,35 +278,35 @@
           // it needs to close, but still become the currently active
           // and tabindexable element
           if ( $e.hasClass('was-active') ) {
-            setTimeout(function () {
-              $target.attr('aria-hidden', 'true').slideUp();
 
-              $self.find('> ' + accTrigger).removeClass('is-active').attr(setFalse);
+            $target.attr('aria-hidden', 'true').slideUp();
 
-              $e.attr({
-                'aria-expanded': 'false',
-                'aria-selected': 'true',
-                'tabindex': '0'
-              }).removeClass('was-active').focus();
+            $self.find(accTrigger).removeClass('is-active').attr(setFalse);
 
-              return;
-            }, 100);
+            $e.attr({
+              'aria-expanded': 'false',
+              'aria-selected': 'true',
+              'tabindex': '0'
+            }).removeClass('was-active').focus();
+
+            return;
+
           }
 
+
           if ( !$e.hasClass('is-active') ) {
-            setTimeout(function () {
-              $target.attr({'aria-hidden': 'false'}).slideDown();
 
-              $self.find('> ' + accTrigger).removeClass('is-active').attr(setFalse);
+            $target.attr({ 'aria-hidden': 'false' }).slideDown();
 
-              $e.attr({
-                'tabindex': '0',
-                'aria-selected': 'true',
-                'aria-expanded': 'true'
-              }).addClass('is-active').focus();
+            $self.find(accTrigger).removeClass('is-active').attr(setFalse);
 
-              return;
-            }, 100);
+            $e.attr({
+              'tabindex': '0',
+              'aria-selected': 'true',
+              'aria-expanded': 'true'
+            }).addClass('is-active').focus();
+
+            return;
 
           }
 
@@ -314,16 +317,15 @@
           // and a user activates it again, then it should
           // close that panel and deactivate the tab
           if ( $e.hasClass('is-active') ) {
-            setTimeout(function () {
-              $target.attr({ 'aria-hidden': 'true' }).slideUp();
 
-              $e.attr({
-                'aria-expanded': 'false',
-                'tabindex': '0'
-              }).removeClass('is-active');
+            $target.attr({ 'aria-hidden': 'true' }).slideUp();
 
-              return;
-            }, 100);
+            $e.attr({
+              'aria-expanded': 'false',
+              'tabindex': '0'
+            }).removeClass('is-active');
+
+            return;
 
           }
 
@@ -354,11 +356,10 @@
           var $currentAccordion = $currentTabItem.parent(),
               $firstTab = $currentAccordion.find('> ' + accTrigger).first(),
               $lastTab = $currentAccordion.find('> ' + accTrigger).last(),
-              $prevTab = $currentTabItem.prev().prev();
-              $nextTab = $currentTabItem.next().next();
+              $prevTab = $currentTabItem.prev().prev(),
+              $nextTab = $currentTabItem.next().next()
 
-          // reset prev/next tabs based on if the current tab
-          // is the first of last of type
+
           if ( $currentTabItem.is(accTrigger + ':first-of-type') ) {
             $prevTab = $lastTab;
           }
@@ -369,7 +370,9 @@
 
           // now there are different keyboard controls for our different situations
           if ( $(e.target).attr('role') === 'tab' ) {
+
             switch ( keyCode ) {
+
               // right + down
               case 39: // right
               case 40: // down
@@ -387,25 +390,9 @@
                 break;
 
               case 13: // enter
+              case 32: // space bar
                 e.stopPropagation();
                 panelReveal( e );
-                break;
-
-              case 32: // space bar
-                e.preventDefault();
-
-                  // var elem,
-                  //   evt = e ? e:event;
-
-                  // if (evt.srcElement)  elem = evt.srcElement;
-                  // else if (evt.target) elem = evt.target;
-
-                  // if ( elem.tagName === 'A') {
-                  //   panelReveal( e );
-                  // }
-
-                  panelReveal( e );
-
                 break;
 
               case 35: // end
@@ -420,11 +407,15 @@
 
               default:
                 break;
+
             } // end switch
+
           } // end if
 
           else if ( $(e.target).closest(accPanel) ) {
+
             if ( e.ctrlKey ) {
+
               e.preventDefault(); // prevent default behavior
 
               switch ( e.keyCode ) {
@@ -445,7 +436,9 @@
                 default:
                   break;
               } // end switch
+
             } // end if
+
           } // end else if
 
         };
@@ -458,10 +451,10 @@
 
 
         // Events
-        $self.find('> ' + accTrigger).on( 'click', panelReveal.bind(this) );
-        $self.find('> ' + accPanel).on( 'click', panelClick.bind(this) );
-        $self.find('> ' + accTrigger).on( 'keydown', keytrolls.bind(this) );
-        $self.find('> ' + accPanel).on( 'keydown', keytrolls.bind(this) );
+        $self.find(accTrigger).on( 'click', panelReveal.bind(this) );
+        $self.find(accPanel).on( 'click', panelClick.bind(this) );
+        $self.find(accTrigger).on( 'keydown', keytrolls.bind(this) );
+        $self.find(accPanel).on( 'keydown', keytrolls.bind(this) );
 
       }); // end: return this.each()
     }
