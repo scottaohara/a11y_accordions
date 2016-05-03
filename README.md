@@ -25,7 +25,7 @@ When focus is in an accordion panel:
 
   * <kbd>Ctrl</kbd> + <kbd>Up</kbd> moves focus to its associated accordion tab
 
-  * <kdb>Ctrl</kbd> + <kbd>Page Up</kbd> moves focus to the previous tab of the currently active tab/panel.
+  * <kbd>Ctrl</kbd> + <kbd>Page Up</kbd> moves focus to the previous tab of the currently active tab/panel.
 
   * <kbd>Ctrl</kbd> + <kbd>Page Down</kbd> moves focus to the next tab after the currently active tab/panel.
 
