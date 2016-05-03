@@ -42,8 +42,9 @@
       */
 
       // setup global class variables
-      var accTrigger    = '.js-acc__trigger',
-          accPanel      = '.js-acc__panel';;
+      var accTrigger    = '.accordion__trigger',
+          accPanel      = '.accordion__panel';
+
 
       return this.each( function () {
 
@@ -51,8 +52,8 @@
         var id = this.id,
             $self = $('#' + id),
             // these two variables will be reused in various functions
-            setFalse = {'aria-selected': 'false', 'tabindex': '-1' },
-            setTrue = {'aria-selected': 'true', 'tabindex': '0'},
+            setFalse = { 'aria-selected': 'false', 'tabindex': '-1' },
+            setTrue = { 'aria-selected': 'true', 'tabindex': '0' },
 
 
         genAcc = function () {
@@ -84,7 +85,7 @@
                 $grabLabel = $this.prev(':header').text() || $this.attr('data-tab-label') || 'Tab ' + $panelNum,
 
                 // Put it all together as a new <li>tab</li>
-                $createTabItem = '<button type="button" data-href="#'+$grabID+'" class="js-acc__trigger accordion__trigger">'+$grabLabel+'</button>';
+                $createTabItem = '<button type="button" data-href="#'+$grabID+'" class="accordion__trigger">'+$grabLabel+'</button>';
 
                 $this.before($createTabItem);
 
@@ -126,12 +127,12 @@
                 $thisTarget = $getURL.split('#')[1];
 
             $this.attr({
-              'role': 'tab',
               'aria-controls': $thisTarget,
               'aria-expanded': 'false',
               'aria-selected': 'false',
-              'tabindex': '-1',
-              'id': $thisTarget + '_tab'
+              'id': $thisTarget + '_tab',
+              'role': 'tab',
+              'tabindex': '-1'
             });
 
           }); // end $self.find(accTrigger).each
@@ -144,9 +145,9 @@
 
             // setup panel to have appropriate attribute hooks
             $this.attr({
-              'role': 'tabpanel',
               'aria-hidden': 'true',
-              'aria-labelledby': $this.before().attr('id') + '_tab'
+              'aria-labelledby': $this.before().attr('id') + '_tab',
+              'role': 'tabpanel'
             });
 
             // if a panel should be shown by default,
@@ -179,7 +180,7 @@
           // needs to be focusable in the tablist
           if ( !$self.hasClass('has-default') ) {
 
-            $self.find('> ' + accTrigger).first().attr({ 'tabindex': '0' });
+            $self.find('> ' + accTrigger + ':first-of-type').attr({ 'tabindex': '0' });
 
           }
 
@@ -199,6 +200,7 @@
           }
 
         },
+
 
 
 
@@ -230,10 +232,13 @@
         checkExpanded = function () {
 
           $self.find('> ' + accTrigger).each( function () {
+
             var $this = $(this);
 
             if ( $this.attr('aria-expanded') === 'true' ) {
+
               $this.addClass('was-active');
+
             }
 
           });
@@ -258,13 +263,14 @@
           // opened tags need to close
           if ( !$self.attr('data-multi-open') ) {
 
-            $self.find('> ' + accPanel).attr({ 'aria-hidden': 'true' }).slideUp();
-
             $self.find('> ' + accTrigger).attr({
               'aria-selected': 'false',
               'aria-expanded': 'false',
               'tabindex': '-1'
             });
+
+            $self.find('> ' + accPanel).attr({ 'aria-hidden': 'true' }).slideUp();
+
           }
 
 
@@ -277,8 +283,6 @@
           // and tabindexable element
           if ( $e.hasClass('was-active') ) {
 
-            $target.attr('aria-hidden', 'true').slideUp();
-
             $self.find('> ' + accTrigger).removeClass('is-active').attr(setFalse);
 
             $e.attr({
@@ -287,14 +291,32 @@
               'tabindex': '0'
             }).removeClass('was-active').focus();
 
+            $target.attr('aria-hidden', 'true').slideUp();
+
             return;
 
           }
 
 
-          if ( !$e.hasClass('is-active') ) {
+          // regardless of if multiOpen is true or false,
+          // if the target trigger has a class of is-active,
+          // and a user activates it again, then it should
+          // close that panel and deactivate the tab
+          if ( $e.hasClass('is-active') ) {
 
-            $target.attr({ 'aria-hidden': 'false' }).slideDown();
+            $e.attr({
+              'aria-expanded': 'false',
+              'tabindex': '0'
+            }).removeClass('is-active');
+
+            $target.attr({ 'aria-hidden': 'true' }).slideUp();
+
+            return;
+
+          }
+
+
+          else if ( !$e.hasClass('is-active') ) {
 
             $self.find('> ' + accTrigger).removeClass('is-active').attr(setFalse);
 
@@ -304,24 +326,7 @@
               'aria-expanded': 'true'
             }).addClass('is-active').focus();
 
-            return;
-
-          }
-
-
-
-          // regardless of if multiOpen is true or false,
-          // if the target trigger has a class of is-active,
-          // and a user activates it again, then it should
-          // close that panel and deactivate the tab
-          if ( $e.hasClass('is-active') ) {
-
-            $target.attr({ 'aria-hidden': 'true' }).slideUp();
-
-            $e.attr({
-              'aria-expanded': 'false',
-              'tabindex': '0'
-            }).removeClass('is-active');
+            $target.attr({ 'aria-hidden': 'false' }).slideDown();
 
             return;
 
@@ -330,14 +335,13 @@
         },
 
 
+
         // tab/trigger keyboard controls
         keytrolls = function ( e ) {
 
           var keyCode = e.which,
               $grabThisTrigger,
-              $currentTabItem,
-              $prevTab,
-              $nextTab;
+              $currentTabItem;
 
           // are we in the tab/headings or inside a panel?
           if ( $(e.target).attr('role') === 'tab' ) {
@@ -387,12 +391,6 @@
                 $prevTab.focus().attr(setTrue);
                 break;
 
-              case 13: // enter
-              case 32: // space bar
-                e.stopPropagation();
-                panelReveal( e );
-                break;
-
               case 35: // end
                 e.stopPropagation();
                 $lastTab.focus().attr(setTrue);
@@ -407,6 +405,26 @@
                 break;
 
             } // end switch
+
+
+          if ( $(e.target).is('a') ) {
+            switch ( keyCode ) {
+              case 13: // enter
+              case 32: // space bar
+                e.stopPropagation();
+                panelReveal( e );
+                break;
+            }
+          }
+          else if ( $(e.target).is('button') ) {
+            switch ( keyCode ) {
+              case 13: // enter
+                e.stopPropagation();
+                panelReveal( e );
+                break;
+            }
+          }
+
 
           } // end if
 
