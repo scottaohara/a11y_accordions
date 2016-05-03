@@ -27,12 +27,6 @@ button.accordion__trigger {
   display: none;
   padding: 20px;
 }
-.no-js .accordion__trigger {
-  color: inherit;
-}
-.no-js .accordion__panel {
-  display: block;
-}
 
 button.accordion__trigger {
   -webkit-appearance: none;
@@ -40,4 +34,19 @@ button.accordion__trigger {
   border-radius: 0;
   text-align: left;
   width: 100%;
+}
+
+.no-js .accordion__trigger {
+  color: inherit;
+}
+.no-js .accordion__panel {
+  display: block;
+}
+
+.no-js a + .accordion__panel {
+  display: none;
+}
+
+.no-js .accordion__panel:target {
+  display: block;
 }
