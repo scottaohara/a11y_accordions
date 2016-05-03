@@ -1,7 +1,38 @@
 # Accessible Accordions
 
-Accessible accordion component built as a jQuery plug-in.
+Accessible accordion jQuery plug-in.
 
+DEMO: http://scottaohara.github.io/accessible_accordions/
+
+Based on: https://www.w3.org/TR/wai-aria-practices/#accordion
+
+
+## Keyboard Controls
+
+When focus on the accordion tabs:
+
+  * <kbd>Up</kbd> & <kbd>Left</kbd> move focus to previous tabs
+
+  * <kbd>Down</kbd> & <kbd>Right</kbd> move focus to next tabs
+
+  * <kbd>Home</kbd> moves focus to the first accordion tab
+
+  * <kbd>End</kbd> moves focus to the last accordion tab
+
+  * <kbd>Space</kbd> or <kbd>Enter</kbd> open/close the tab's associated panel
+
+When focus is in an accordion panel:
+
+  * <kbd>Ctrl</kbd> + <kbd>Up</kbd> moves focus to its associated accordion tab
+
+  * <kdb>Ctrl</kbd> + <kbd>Page Up</kbd> moves focus to the previous tab of the currently active tab/panel.
+
+  * <kbd>Ctrl</kbd> + <kbd>Page Down</kbd> moves focus to the next tab after the currently active tab/panel.
+
+
+__Take Note:__
+
+In some browsers (namely FireFox), <kbd>Ctrl</kbd> + <kbd>Page Down</kbd> or <kbd>Page Up</kbd> is used by the browser to move between other browser tabs.
 
 
 ## Minimum Required Mark-up
