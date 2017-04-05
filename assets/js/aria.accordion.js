@@ -42,6 +42,7 @@
     var widget = doc.querySelectorAll('[data-aria-accordion]');
 
     for ( i = 0; i < widget.length; i++ ) {
+      var t;
       // easy ref for widget
       self = widget[i];
 
@@ -73,21 +74,11 @@
       // accordions with a constantly open panel are not a default
       // but if a data-constant attribute is used, then we need this
       // to be true
-      if ( self.hasAttribute('data-constant') ) {
-        constantPanel = true;
-      }
-      else {
-        constantPanel = false;
-      }
+      constantPanel = self.hasAttribute('data-constant');
 
       // accordions can have multiple panels open at a time,
       // if they have a data-multi attribute
-      if ( self.hasAttribute('data-multi') ) {
-        multiPanel = true;
-      }
-      else {
-        multiPanel = false;
-      }
+      multiPanel = self.hasAttribute('data-multi');
 
 
       /**
@@ -102,8 +93,6 @@
       // Now that the headings/triggers and panels are setup
       // we can grab all the triggers and setup their functionality
       // var triggers = self.querySelectorAll('.'+widgetTrigger);
-      var t;
-
       for ( t = 0; t < triggers.length; t++ ) {
         triggers[t].addEventListener('click', ARIAaccordion.actions);
         triggers[t].addEventListener('keydown', ARIAaccordion.keytrolls);
@@ -208,23 +197,21 @@
   }; // ARIAaccordion.createButton
 
 
-  // ARIAaccordion.setupEvents = function ( triggers ) {
-
-  // } // ARIAaccordion.setupEvents
-
-
   ARIAaccordion.actions = function ( e ) {
-    e.preventDefault();
+    // need to pass in if this is a multi accordion or naw
+    // also need to pass in existing trigger arrays
     var thisAccordion = this.id.replace(/_panel.*$/g, '');
-
     var thisTarget = doc.getElementById(this.getAttribute('aria-controls'));
     var thisTriggers = doc.querySelectorAll('#' + thisAccordion + ' > .' + widgetHeading + ' .' + widgetTrigger);
+    var thisPanels;
+
+    e.preventDefault();
 
     if ( doc.getElementById(thisAccordion).hasAttribute('data-multi') ) {
       ARIAaccordion.togglePanel( e, thisAccordion, thisTarget, thisTriggers );
     }
     else {
-      var thisPanels = doc.querySelectorAll('#' + thisAccordion + ' > .' + widgetPanel);
+      thisPanels = doc.querySelectorAll('#' + thisAccordion + ' > .' + widgetPanel);
       ARIAaccordion.togglePanel( e, thisAccordion, thisTarget, thisTriggers );
       ARIAaccordion.closeAll( thisTriggers );
     }
@@ -233,9 +220,11 @@
 
   ARIAaccordion.closeAll = function ( triggers ) {
     var i;
+    var openPanel;
+    var getID;
+
     for ( i = 0; i < triggers.length; i++ ) {
 
-      var openPanel;
 
       if ( triggers[i].getAttribute('data-current') === 'true' ) {
         openPanel = triggers[i].getAttribute('aria-controls');
@@ -245,7 +234,7 @@
         ariaExpanded(triggers[i], false);
 
         if ( triggers[i].getAttribute('aria-expanded') === 'false' ) {
-          var getID = triggers[i].getAttribute('aria-controls');
+          getID = triggers[i].getAttribute('aria-controls');
           doc.getElementById(getID).setAttribute('aria-hidden', 'true');
         }
       }
@@ -297,13 +286,9 @@
 
       var thisAccordion = this.id.replace(/_panel.*$/g, '');
 
-
-
       var thisTriggers = doc.querySelectorAll('#' + thisAccordion + ' > .' + widgetHeading + ' .' + widgetTrigger);
 
-      console.log(thisTriggers);
-
-      var idx = thisTriggers.length;
+      // var idx = thisTriggers.length;
       var i;
 
       switch ( keyCode ) {
@@ -317,9 +302,15 @@
         case keyDown:
           if ( doc.getElementById(thisAccordion).hasAttribute('data-up-down') ) {
             e.preventDefault();
+            // optional down arrow control
           }
           break;
 
+
+        // should keyEnd/Home controls even exist?
+        // they are optional functions that may not be inherently known
+        // to most users and, in the case of END, conflict with expected
+        // usage of that key via NVDA.
         case keyEnd:
           e.preventDefault();
           thisTriggers[thisTriggers.length - 1].focus();
