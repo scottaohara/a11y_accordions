@@ -35,12 +35,12 @@
   outline: none;
 }
 
-.accordion__trigger[aria-disabled]:hover {
+.accordion__trigger[aria-disabled="true"]:hover {
   background-color: #f8f8f8;
   color: inherit;
   cursor: default;
 }
-.accordion__trigger[aria-disabled]:focus {
+.accordion__trigger[aria-disabled="true"]:focus {
   background-color: #000!important;
 }
 
@@ -64,11 +64,6 @@
   max-height: 100vh;
 }
 
-:focus {
-  background: #f00!important;
-}
-
-
 [data-constant] {
   border: 2px solid;
 }
@@ -81,15 +76,12 @@
 
 
 [data-current='true'] {
-  background: yellow!important;
+  background: yellow;
 }
 
 
-[aria-disabled] {
-  background: blue!important;
-}
 
-
-[data-current='true'][aria-disabled] {
-  color: #f00!important;
+.accordion__trigger[data-current='true'][aria-disabled="true"] {
+  background: #666;
+  color: #fff!important;
 }

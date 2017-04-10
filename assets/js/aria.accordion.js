@@ -9,10 +9,10 @@
   var ARIAaccordion = {};
   w.ARIAaccordion   = ARIAaccordion; // make functions available outside of iffe
 
-  ARIAaccordion.NS      = "ARIAaccordion";
-  ARIAaccordion.AUTHOR  = "Scott O'Hara";
-  ARIAaccordion.VERSION = "2.0.0";
-  ARIAaccordion.LICENSE = "https://github.com/scottaohara/accessible-components/blob/master/LICENSE.md";
+  ARIAaccordion.NS      = 'ARIAaccordion';
+  ARIAaccordion.AUTHOR  = 'Scott O\'Hara';
+  ARIAaccordion.VERSION = '2.0.0';
+  ARIAaccordion.LICENSE = 'https://github.com/scottaohara/accessible-components/blob/master/LICENSE.md';
 
   var widgetTrigger = 'accordion__trigger';
   var widgetHeading = 'accordion__heading';
@@ -176,8 +176,9 @@
       // be hidden or shown by default. Add an aria-expanded
       // attribute value that is appropriate
       if ( targetState === 'false' ) {
-        newButton.setAttribute('aria-expanded', 'true');
-        newButton.setAttribute('data-current', 'true');
+        ariaExpanded(newButton, true);
+        isCurrent(newButton, true);
+
 
         // check to see if this an accordion that needs a constantly
         // opened panel, and if the button's target is not hidden
@@ -186,8 +187,8 @@
         }
       }
       else {
-        newButton.setAttribute('aria-expanded', 'false');
-        newButton.setAttribute('data-current', 'false');
+        ariaExpanded(newButton, false);
+        isCurrent(newButton, false);
       }
 
       // add the Button & previous heading text
@@ -225,12 +226,11 @@
 
     for ( i = 0; i < triggers.length; i++ ) {
 
-
       if ( triggers[i].getAttribute('data-current') === 'true' ) {
         openPanel = triggers[i].getAttribute('aria-controls');
       }
 
-      if ( triggers[i].getAttribute('data-current') === 'false' ) {
+      else if ( triggers[i].getAttribute('data-current') === 'false' ) {
         ariaExpanded(triggers[i], false);
 
         if ( triggers[i].getAttribute('aria-expanded') === 'false' ) {
@@ -248,25 +248,25 @@
     var thisTrigger = e.target;
 
     for ( i = 0; i < triggers.length; i++ ) {
-      triggers[i].setAttribute('data-current', 'false');
-      triggers[i].removeAttribute('aria-disabled');
+      isCurrent(triggers[i], false);
+      ariaDisabled(triggers[i], false);
     }
 
     if ( doc.getElementById(thisAccordion).hasAttribute('data-constant') ) {
       ariaExpanded(thisTrigger, true);
-      thisTrigger.setAttribute('aria-disabled', 'true');
-      thisTrigger.setAttribute('data-current', 'true');
+      ariaDisabled(thisTrigger, true);
+      isCurrent(thisTrigger, true);
       ariaHidden(targetPanel, false);
     }
     else {
       if ( thisTrigger.getAttribute('aria-expanded') === 'true' ) {
         ariaExpanded(thisTrigger, false);
-        thisTrigger.setAttribute('data-current', 'true');
         ariaHidden(targetPanel, true);
+        isCurrent(thisTrigger, true);
       }
       else {
         ariaExpanded(thisTrigger, true);
-        thisTrigger.setAttribute('data-current', 'true');
+        isCurrent(thisTrigger, true);
         ariaHidden(targetPanel, false);
       }
     }
@@ -342,7 +342,7 @@
 
   /**
    * Helper Functions
-   * Just to cut down on some redundant declarations
+   * Just to cut down on the verboseness of some declarations
    */
   var ariaHidden = function ( el, state ) {
     el.setAttribute('aria-hidden', state);
@@ -350,7 +350,15 @@
 
   var ariaExpanded = function ( el, state ) {
     el.setAttribute('aria-expanded', state);
-  }
+  };
+
+  var ariaDisabled = function ( el, state ) {
+    el.setAttribute('aria-disabled', state);
+  };
+
+  var isCurrent = function ( el, state ) {
+    el.setAttribute('data-current', state);
+  };
 
   // go go JavaScript
   ARIAaccordion.init();
