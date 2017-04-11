@@ -208,67 +208,52 @@
 
     e.preventDefault();
 
-    if ( doc.getElementById(thisAccordion).hasAttribute('data-multi') ) {
-      ARIAaccordion.togglePanel( e, thisAccordion, thisTarget, thisTriggers );
-    }
-    else {
-      thisPanels = doc.querySelectorAll('#' + thisAccordion + ' > .' + widgetPanel);
-      ARIAaccordion.togglePanel( e, thisAccordion, thisTarget, thisTriggers );
-      ARIAaccordion.closeAll( thisTriggers );
-    }
+    ARIAaccordion.togglePanel( e, thisAccordion, thisTarget, thisTriggers );
+
   }; // ARIAaccordion.actions()
-
-
-  ARIAaccordion.closeAll = function ( triggers ) {
-    var i;
-    var openPanel;
-    var getID;
-
-    for ( i = 0; i < triggers.length; i++ ) {
-
-      if ( triggers[i].getAttribute('data-current') === 'true' ) {
-        openPanel = triggers[i].getAttribute('aria-controls');
-      }
-
-      else if ( triggers[i].getAttribute('data-current') === 'false' ) {
-        ariaExpanded(triggers[i], false);
-
-        if ( triggers[i].getAttribute('aria-expanded') === 'false' ) {
-          getID = triggers[i].getAttribute('aria-controls');
-          doc.getElementById(getID).setAttribute('aria-hidden', 'true');
-        }
-      }
-    }
-  }
 
 
   ARIAaccordion.togglePanel = function ( e, thisAccordion, targetPanel, triggers ) {
     var i;
     var thisAccordion = thisAccordion;
     var thisTrigger = e.target;
+    var getID;
 
-    for ( i = 0; i < triggers.length; i++ ) {
-      isCurrent(triggers[i], false);
-      ariaDisabled(triggers[i], false);
-    }
+    // check to see if a trigger is disabled
+    if ( thisTrigger.getAttribute('aria-disabled') !== 'true' ) {
 
-    if ( doc.getElementById(thisAccordion).hasAttribute('data-constant') ) {
-      ariaExpanded(thisTrigger, true);
-      ariaDisabled(thisTrigger, true);
-      isCurrent(thisTrigger, true);
-      ariaHidden(targetPanel, false);
-    }
-    else {
+      getID = thisTrigger.getAttribute('aria-controls');
+
+      isCurrent(thisTrigger, 'true');
+
       if ( thisTrigger.getAttribute('aria-expanded') === 'true' ) {
-        ariaExpanded(thisTrigger, false);
-        ariaHidden(targetPanel, true);
-        isCurrent(thisTrigger, true);
+        ariaExpanded(thisTrigger, 'false');
+        ariaHidden(targetPanel, 'true');
       }
       else {
-        ariaExpanded(thisTrigger, true);
-        isCurrent(thisTrigger, true);
-        ariaHidden(targetPanel, false);
+        ariaExpanded(thisTrigger, 'true');
+        ariaHidden(targetPanel, 'false');
+
+        if ( doc.getElementById(thisAccordion).hasAttribute('data-constant') ) {
+          ariaDisabled(thisTrigger, 'true');
+        }
       }
+
+
+      if ( doc.getElementById(thisAccordion).hasAttribute('data-constant') ||
+           !doc.getElementById(thisAccordion).hasAttribute('data-multi') ) {
+
+        for ( i = 0; i < triggers.length; i++ ) {
+          if ( thisTrigger !== triggers[i] ) {
+            isCurrent(triggers[i], 'false');
+            getID = triggers[i].getAttribute('aria-controls');
+            ariaDisabled(triggers[i], 'false');
+            ariaExpanded(triggers[i], 'false');
+            ariaHidden(doc.getElementById(getID), 'true');
+          }
+        }
+      }
+
     }
   }
 
