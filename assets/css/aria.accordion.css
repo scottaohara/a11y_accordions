@@ -1,87 +1,85 @@
-[data-action="a11y-accordion"] {
-  overflow: hidden;
+/**
+ * Accordion container element
+ */
+.accordion {
+
 }
 
-.accordion__heading {
-  font-size: inherit;
-  margin: 0;
+/**
+ * Accordion Heading
+ */
+.js .accordion__heading {
+	border: 1px solid #4464c2;
+	font-size: inherit;
+	margin: -1px 0 0;
 }
 
 .js .accordion__trigger {
-   -webkit-appearance: none;
-  background-color: #f8f8f8;
-  border: 0;
-  border-bottom: 1px solid #444;
-  border-radius: 0;
-  box-shadow: none;
-  color: #4464c2;
-  cursor: pointer;
-  display: block;
-  font-size: inherit;
-  outline: none;
-  padding: .5em 1em;
-  position: relative;
-  text-align: left;
-  text-decoration: none;
-  text-transform: none;
-  width: 100%;
-  z-index: 2;
+	-webkit-appearance: none;
+	background-color: #fafafa;
+	border: none;
+	border-radius: 0;
+	box-shadow: none;
+	color: #4464c2;
+	cursor: pointer;
+	display: block;
+	font-size: inherit;
+	padding: .5em 1em;
+	position: relative;
+	text-align: left;
+	width: 100%;
+	z-index: 2;
 }
 
 .js .accordion__trigger:hover,
 .js .accordion__trigger:focus {
-  background-color: #6589f2;
-  color: #fff;
-  outline: none;
+	background-color: #0E3B5E;
+	color: #fff;
+	outline: none;
+}
+
+.js .accordion__trigger:focus {
+	box-shadow: inset 0 0 0 2px #1e82d1;
 }
 
 .accordion__trigger[aria-disabled="true"]:hover {
-  background-color: #f8f8f8;
-  color: inherit;
-  cursor: default;
+	background-color: #1b75bc;
+	color: #fff;
+	cursor: not-allowed;
 }
+
 .accordion__trigger[aria-disabled="true"]:focus {
-  background-color: #000!important;
+	background-color: #0a2a42;
 }
 
 .js .accordion__panel {
-  background-color: inherit;
-  margin-top: -40px;
-  max-height: 0vh;
-  opacity: 0;
-  overflow: hidden;
-  padding: 20px;
-  position: relative;
-  transform: translate3d(0,0,0);
-  visibility: hidden;
-  z-index: 1;
+	background-color: inherit;
+	max-height: 0vh;
+	overflow: hidden;
+	padding: .05em 1.25em;
+	position: relative;
+	/*transform: translate3d(0,0,0);*/
+	visibility: hidden;
+	z-index: 1;
+}
+
+.js .accordion__panel {
+	margin-top: -.1em;
+}
+
+.js .accordion__panel > :last-child {
+	margin-bottom: 0;
 }
 
 .js .accordion__panel[aria-hidden="false"] {
-  margin-top: 0px;
-  opacity: 1;
-  visibility: visible;
-  max-height: 100vh;
+	/*margin-top: 0;*/
+	max-height: 100vh;
+	overflow: auto;
+	padding: 1.25em;
+	visibility: visible;
 }
 
-[data-constant] {
-  border: 2px solid;
-}
-
-
-
-[data-multi] {
-  border: 1px solid #f00;
-}
-
-
-[data-current='true'] {
-  background: yellow;
-}
-
-
-
-.accordion__trigger[data-current='true'][aria-disabled="true"] {
-  background: #666;
-  color: #fff!important;
+.accordion__trigger[aria-expanded="true"] {
+	background: #1b75bc;
+	color: #fff;
 }
