@@ -49,7 +49,7 @@ During the setup process the following occurs:
 
 
 ## Options  
-The following `data` attributes can be added to an accordion instance to alter the default accordion setup settings.
+The following `data` attributes can be added to an accordion instance to alter the default accordion setup settings. None of the `data` attributes affect nested accordions, so a parent accordion that requires a consistently open panel would not pass down that requirement to a child accordion.  
 
 ### `data-default` 
 * Leave off or set to "none" to not have a panel open by default.  
@@ -61,7 +61,7 @@ The following `data` attributes can be added to an accordion instance to alter t
 By placing this attribute on the accordion wrapper, it will indicate that an accordion panel must always be expanded. An `aria-disabled="true"` will be set to the `button` that controls the expanded panel. This attribute will indicate to assistive technologies that the `button` can not be currently interacted with.    
 
 ### `data-transition`  
-Giving this element a numeric value will apply a `style="transition: [val]s ease-in-out` to the accordion panels. Set this if you want your accordion panels to have open/close transitions applied to them.  
+Giving this attribute a numeric value will apply a `style="transition: [val]s ease-in-out` to the accordion panels. Set this if you want an accordion panels to have open/close transitions applied to them. 
 
 ### `data-multi`  
-This attribute requires no value. Setting it will allow multiple accordion panels to be opened at once.  
+This attribute requires no value. Setting it will allow multiple accordion panels, of a particular group, to be opened at once.  
