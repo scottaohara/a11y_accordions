@@ -35,7 +35,6 @@
 		var triggers;
 		var constantPanel;
 		var multiPanel;
-		var animates;
 		var i;
 
 		var widget = doc.querySelectorAll('[data-aria-accordion]');
@@ -88,11 +87,10 @@
 			 *
 			 */
 			if ( self.hasAttribute('data-transition') ) {
-				var t;
 				var thesePanels = self.querySelectorAll('.' + widgetPanel);
 
 				for ( t = 0; t < thesePanels.length; t++ ) {
-					thesePanels[t].setAttribute('style', 'transition: ' + self.getAttribute('data-transition') + 's ease-in-out')
+					thesePanels[t].setAttribute('style', 'transition: ' + self.getAttribute('data-transition') + 's ease-in-out');
 				}
 			}
 
@@ -137,7 +135,7 @@
 			 * opened panel if a data-default value is set.
 			 * If no value set, then no panels are open.
 			 */
-			if ( setPanel !== 'none' && parseInt(setPanel) !== NaN ) {
+			if ( setPanel !== 'none' && isNaN(setPanel) ) {
 				// if value is 1 or less
 				if ( setPanel <= 1 ) {
 					ariaHidden(panels[0], false);
@@ -158,7 +156,7 @@
 			 * and a default open panel was not set (or was not set correctly),
 			 * then run one more check.
 			 */
-			if ( constant && setPanel === 'none' || parseInt(setPanel) === NaN ) {
+			if ( constant && setPanel === 'none' || isNaN(setPanel) ) {
 				ariaHidden(panels[0], false);
 			}
 		}
@@ -167,7 +165,6 @@
 
 
 	ARIAaccordion.setupHeadingButton = function ( headings, constantPanel ) {
-		var headings = headings;
 		var heading;
 		var targetID;
 		var targetState;
@@ -222,12 +219,11 @@
 
 
 	ARIAaccordion.actions = function ( e ) {
-		// need to pass in if this is a multi accordion or not
-		// also need to pass in existing trigger arrays
+		// Need to pass in if this is a multi accordion or not.
+		// Also need to pass in existing trigger arrays.
 		var thisAccordion = this.id.replace(/_panel.*$/g, '');
 		var thisTarget = doc.getElementById(this.getAttribute('aria-controls'));
 		var thisTriggers = doc.querySelectorAll('#' + thisAccordion + ' > .' + widgetHeading + ' .' + widgetTrigger);
-		var thisPanels;
 
 		e.preventDefault();
 
@@ -237,7 +233,6 @@
 
 	ARIAaccordion.togglePanel = function ( e, thisAccordion, targetPanel, triggers ) {
 		var i;
-		var thisAccordion = thisAccordion;
 		var thisTrigger = e.target;
 		var getID;
 
@@ -275,7 +270,7 @@
 				}
 			}
 		}
-	}
+	};
 
 
 	ARIAaccordion.keytrolls = function ( e ) {
@@ -283,39 +278,38 @@
 			var keyCode = e.keyCode || e.which;
 
 			// vars for keyboard keys
-			var keyUp = 38;
-			var keyDown = 40;
+			// var keyUp = 38;
+			// var keyDown = 40;
 			var keyHome = 36;
 			var keyEnd = 35;
-			var keyTab = 9;
 
 			var thisAccordion = this.id.replace(/_panel.*$/g, '');
 
 			var thisTriggers = doc.querySelectorAll('#' + thisAccordion + ' > .' + widgetHeading + ' .' + widgetTrigger);
 
-			// var idx = thisTriggers.length;
-			var i;
-
 			switch ( keyCode ) {
-				case keyUp:
-					if ( doc.getElementById(thisAccordion).hasAttribute('data-up-down') ) {
-						e.preventDefault();
-						// optional up arrow controls
-					}
-					break;
+				/**
+				 * keyUp & keyDown are optional controls
+				 * for accordion components.
+				 */
+				// case keyUp:
+				// 	if ( doc.getElementById(thisAccordion).hasAttribute('data-up-down') ) {
+				// 		e.preventDefault();
+				// 		// optional up arrow controls
+				// 	}
+				// 	break;
 
-				case keyDown:
-					if ( doc.getElementById(thisAccordion).hasAttribute('data-up-down') ) {
-						e.preventDefault();
-						// optional down arrow control
-					}
-					break;
+				// case keyDown:
+				// 	if ( doc.getElementById(thisAccordion).hasAttribute('data-up-down') ) {
+				// 		e.preventDefault();
+				// 		// optional down arrow control
+				// 	}
+				// 	break;
 
 				/**
-				 * Should keyEnd/Home controls even exist?
-				 * they are optional functions that may not be inherently known
+				 * keyEnd/Home are optional functions that may not be inherently known
 				 * to most users and, in the case of END, conflict with expected
-				 * usage of that key via NVDA.
+				 * usage of that key with NVDA.
 				 */
 				case keyEnd:
 					e.preventDefault();
@@ -335,7 +329,6 @@
 	}; // ARIAaccordion.keytrolls()
 
 
-
 	/**
 	 * Initialize Accordion Functions
 	 * if expanding this script, place any other
@@ -343,7 +336,7 @@
 	 */
 	ARIAaccordion.init = function () {
 		ARIAaccordion.create();
-	}; // ARIAaccordion.init()
+	};
 
 
 	/**
