@@ -8,9 +8,10 @@ ARIA accordion JavaScript pattern.
 
 ## Keyboard Controls  
 When focus on the accordion triggers:  
-* <kbd>Home</kbd> moves focus to the first accordion tab  
-* <kbd>End</kbd> moves focus to the last accordion tab  
-* <kbd>Space</kbd> or <kbd>Enter</kbd> open/close the tab's associated panel  
+* <kbd>Tab</kbd> and <kbd>Shift</kbd> + <kbd>Tab</kbd>, or standard AT navigation keys are used to navigate between accordion triggers and any focusable content within an accordion panel.  
+* <kbd>Home</kbd> moves focus to the first accordion trigger in the group.  
+* <kbd>End</kbd> moves focus to the last accordion trigger in the group.  
+* <kbd>Space</kbd> or <kbd>Enter</kbd> open/close the trigger's associated panel.  
 
 
 ## Minimum Required Mark-up  
