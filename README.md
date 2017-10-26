@@ -65,3 +65,11 @@ Giving this attribute a numeric value will apply a `style="transition: [val]s ea
 
 ### `data-multi`  
 This attribute requires no value. Setting it will allow multiple accordion panels, of a particular group, to be opened at once.  
+
+
+## License & Such
+This script was written by [Scott O'Hara](https://twitter.com/scottohara).
+
+It has an [MIT](https://github.com/scottaohara/accessible-components/blob/master/LICENSE.md) license.
+
+Do with it what you will :)
