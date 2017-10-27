@@ -11,7 +11,7 @@
 
 	ARIAaccordion.NS      = 'ARIAaccordion';
 	ARIAaccordion.AUTHOR  = 'Scott O\'Hara';
-	ARIAaccordion.VERSION = '2.0.0';
+	ARIAaccordion.VERSION = '2.0.1';
 	ARIAaccordion.LICENSE = 'https://github.com/scottaohara/accessible-components/blob/master/LICENSE.md';
 
 	var widgetTrigger = 'accordion__trigger';
@@ -135,7 +135,7 @@
 			 * opened panel if a data-default value is set.
 			 * If no value set, then no panels are open.
 			 */
-			if ( setPanel !== 'none' && isNaN(setPanel) ) {
+			if ( setPanel !== 'none' && parseInt(setPanel) !== NaN ) {
 				// if value is 1 or less
 				if ( setPanel <= 1 ) {
 					ariaHidden(panels[0], false);
@@ -156,7 +156,7 @@
 			 * and a default open panel was not set (or was not set correctly),
 			 * then run one more check.
 			 */
-			if ( constant && setPanel === 'none' || isNaN(setPanel) ) {
+			if ( constant && setPanel === 'none' || parseInt(setPanel) === NaN ) {
 				ariaHidden(panels[0], false);
 			}
 		}
