@@ -1,5 +1,4 @@
 ;(function ( w, doc, undefined ) {
-	// enable strict mode
 	'use strict';
 
 	/**
@@ -161,7 +160,6 @@
 			}
 		}
 	}; // ARIAaccordion.setupPanels
-
 
 
 	ARIAaccordion.setupHeadingButton = function ( headings, constantPanel ) {
