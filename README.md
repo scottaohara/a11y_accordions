@@ -2,8 +2,9 @@
 
 ARIA accordion JavaScript pattern.  
 
-* [Demo Page](http://scottaohara.github.io/accessible_accordions/)  
+* [Accordion Demo Page](http://scottaohara.github.io/accessible_accordions/)  
 * Based on [ARIA 1.1 Authoring Practices](http://w3c.github.io/aria-practices/#accordion)  
+* [Accessible Accordions blog article](http://www.scottohara.me/blog/2017/10/25/accordion-release.html)  
 
 
 ## Keyboard Controls  
