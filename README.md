@@ -7,14 +7,6 @@ ARIA accordion JavaScript pattern.
 * [Accessible Accordions blog article](http://www.scottohara.me/blog/2017/10/25/accordion-release.html)  
 
 
-## Keyboard Controls  
-When focus on the accordion triggers:  
-* <kbd>Tab</kbd> and <kbd>Shift</kbd> + <kbd>Tab</kbd>, or standard AT navigation keys are used to navigate between accordion triggers and any focusable content within an accordion panel.  
-* <kbd>Home</kbd> moves focus to the first accordion trigger in the group.  
-* <kbd>End</kbd> moves focus to the last accordion trigger in the group.  
-* <kbd>Space</kbd> or <kbd>Enter</kbd> open/close the trigger's associated panel.  
-
-
 ## Minimum Required Mark-up  
 ```html
 <div class="accordion" data-aria-accordion>
@@ -66,6 +58,21 @@ Giving this attribute a numeric value will apply a `style="transition: [val]s ea
 
 ### `data-multi`  
 This attribute requires no value. Setting it will allow multiple accordion panels, of a particular group, to be opened at once.  
+
+
+## Keyboard Controls  
+When focus on the accordion triggers:  
+* <kbd>Tab</kbd> and <kbd>Shift</kbd> + <kbd>Tab</kbd>, or standard AT navigation keys are used to navigate between accordion triggers and any focusable content within an accordion panel.  
+* <kbd>Home</kbd> moves focus to the first accordion trigger in the group.  
+* <kbd>End</kbd> moves focus to the last accordion trigger in the group.  
+* <kbd>Space</kbd> or <kbd>Enter</kbd> open/close the trigger's associated panel.  
+
+### Note about VoiceOver
+When navigating a document by headings, VoiceOver will announce the text of the heading, the fact it contains a button, and the current state of the button (expanded or collapsed). It will then announce the heading level.
+
+VoiceOver will then require a user to navigate into the heading <kbd>CTRL</kbd> + <kbd>Option</kbd> + <kbd>Shift</kbd> + <kbd>Down Arrow</kbd>, to actually interact with the accordion button itself.
+
+For reference, NVDA and JAWS do not require this additional step.
 
 
 ## License & Such  
