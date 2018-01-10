@@ -238,7 +238,7 @@
 
 
 
-		if ( doc.querySelectorAll('#' + thisAccordion.id + '> li').length ) {
+		if ( doc.querySelectorAll('#' + thisAccordion + '> li').length ) {
 			thisTriggers = doc.querySelectorAll('#' + thisAccordion + ' li > .' + widgetHeading + ' .' + widgetTrigger);
 		}
 		else {
@@ -306,7 +306,7 @@
 			var thisAccordion = this.id.replace(/_panel.*$/g, '');
 			var thisTriggers;
 
-			if ( doc.querySelectorAll('#' + thisAccordion.id + '> li').length ) {
+			if ( doc.querySelectorAll('#' + thisAccordion + '> li').length ) {
 				thisTriggers = doc.querySelectorAll('#' + thisAccordion + ' li > .' + widgetHeading + ' .' + widgetTrigger);
 			}
 			else {
