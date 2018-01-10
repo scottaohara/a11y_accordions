@@ -12,6 +12,16 @@
 }
 
 /**
+ * Add zero-width space. needed to ensure Safari + VO respect list semantics.
+ * Set the before content to position absolute to negate any visible space
+ * the before content could add to the document.
+ */
+.accordion > li:before {
+	content: "\200B";
+	position: absolute;
+}
+
+/**
  * Accordion Heading
  */
 .js .accordion__heading {
@@ -36,6 +46,20 @@
 	width: 100%;
 	z-index: 2;
 }
+
+/**
+ * This is needed to allow a double tap iOS 11
+ * Safari + VO to function correctly, if there
+ * are multiple elements (wrapper spans) to layout
+ * text nodes within the accordion button.
+
+	-- This is not needed if a button only contains text
+	   and no other child nodes wrapping the text --
+
+.accordion__trigger > * {
+	pointer-events: none;
+}
+ */
 
 .js .accordion__trigger:hover,
 .js .accordion__trigger:focus {
