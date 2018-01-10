@@ -2,7 +2,13 @@
  * Accordion container element
  */
 .accordion {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
 
+.accordion > li {
+	margin: 0;
 }
 
 /**
@@ -33,7 +39,7 @@
 
 .js .accordion__trigger:hover,
 .js .accordion__trigger:focus {
-	background-color: #0E3B5E;
+	background-color: #0e3b5e;
 	color: #fff;
 	outline: none;
 }
@@ -58,7 +64,6 @@
 	overflow: hidden;
 	padding: .05em 1.25em;
 	position: relative;
-	/*transform: translate3d(0,0,0);*/
 	visibility: hidden;
 	z-index: 1;
 }
@@ -72,7 +77,6 @@
 }
 
 .js .accordion__panel[aria-hidden="false"] {
-	/*margin-top: 0;*/
 	max-height: 100vh;
 	overflow: auto;
 	padding: 1.25em;

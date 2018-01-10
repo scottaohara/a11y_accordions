@@ -41,11 +41,11 @@
 					Progressively enhanced ARIA accordions
 				</h1>
 
-				<p>
+		<!-- 		<p>
 					See the source code for <a href="https://github.com/scottaohara/accessible_accordions">this demo on GitHub</a>.
 				</p>
 
-				<p>
+		 		<p>
 					The following accordion examples are enhanced from a basic HTML pattern of <span style="white-space: nowrap;">container > heading + sub-container</span>.
 				</p>
 				<p>For example:</p>
@@ -58,7 +58,7 @@
 
 				<p>
 					So without JavaScript, they will retain an appropriate document structure and the content will be completely accessible.
-				</p>
+				</p> -->
 
 				<h2 class="demo-heading">
 					<span>Demo 1:</span>
@@ -202,10 +202,59 @@
 						</p>
 					</div>
 				</div>
+
+
+
+				<h2 class="demo-heading">
+					<span>Demo 4:</span>
+					Accordion contained within an <code>&lt;ol></code>, with no panels open by default.
+				</h2>
+				<ol class="accordion"
+					data-aria-accordion
+					data-listing
+					data-default="none">
+					<li>
+						<h3 class="accordion__heading">
+							Chapter 4
+						</h3>
+						<div class="accordion__panel">
+							<p>
+								Using the <code>data-constant</code> attribute on the parent
+								accordion wrapper will require that an accordion panel
+								be perpetually set to open.
+							</p>
+						</div>
+					</li>
+					<li>
+						<h3 class="accordion__heading">
+							Chapter 5
+						</h3>
+						<div class="accordion__panel">
+							<p>
+								When panels are open, their corresponding trigger (button) will
+								be announced as "dimmed" or "unavailable", so it's clear that
+								while the trigger exists, it can't presently be activated.
+							</p>
+						</div>
+					</li>
+					<li>
+						<h2 class="accordion__heading">
+							Chapter 6
+						</h2>
+						<div class="accordion__panel">
+							<p>
+								Sometimes accordions are desired within accordions. Typically
+								this should be advised against, as it can create a more
+								complex UX than should really be necessary.
+							</p>
+						</div>
+					</li>
+				</ol>
+
 			</div> <!-- /.content-area -->
 
 		</div> <!-- /.page -->
 
-		<script src="assets/js/aria.accordion.min.js"></script>
+		<script src="assets/js/aria.accordion.js"></script>
 	</body>
 </html>

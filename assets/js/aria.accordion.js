@@ -10,7 +10,7 @@
 
 	ARIAaccordion.NS      = 'ARIAaccordion';
 	ARIAaccordion.AUTHOR  = 'Scott O\'Hara';
-	ARIAaccordion.VERSION = '2.0.1';
+	ARIAaccordion.VERSION = '2.1.0';
 	ARIAaccordion.LICENSE = 'https://github.com/scottaohara/accessible-components/blob/master/LICENSE.md';
 
 	var widgetTrigger = 'accordion__trigger';
@@ -56,9 +56,18 @@
 			 * on a specific ID > direct child selector (this will ensure
 			 * that nested accordions don't get properties meant for
 			 * the parent accordion, or vice-versa).
+			 *
+			 * If accordions are contained within an ol/ul, the selector
+			 * needs to be different.
 			 */
-			panels = doc.querySelectorAll('#' + self.id + ' > .' + widgetPanel);
-			headings = doc.querySelectorAll('#' + self.id + ' > .' + widgetHeading);
+			if ( doc.querySelectorAll('#' + self.id + '> li').length ) {
+				panels = doc.querySelectorAll('#' + self.id + ' li > .' + widgetPanel);
+				headings = doc.querySelectorAll('#' + self.id + ' li > .' + widgetHeading);
+			}
+			else {
+				panels = doc.querySelectorAll('#' + self.id + ' > .' + widgetPanel);
+				headings = doc.querySelectorAll('#' + self.id + ' > .' + widgetHeading);
+			}
 
 			/**
 			 * Check for options:
@@ -99,7 +108,12 @@
 			ARIAaccordion.setupPanels(self.id, panels, defaultPanel, constantPanel);
 			ARIAaccordion.setupHeadingButton(headings, constantPanel);
 
-			triggers = doc.querySelectorAll('#' + self.id + ' > .' + widgetHeading + ' .' + widgetTrigger);
+			if ( doc.querySelectorAll('#' + self.id + '> li').length ) {
+				triggers = doc.querySelectorAll('#' + self.id + ' li > .' + widgetHeading + ' .' + widgetTrigger);
+			}
+			else {
+				triggers = doc.querySelectorAll('#' + self.id + ' > .' + widgetHeading + ' .' + widgetTrigger);
+			}
 
 			/**
 			 * Now that the headings/triggers and panels are setup
@@ -172,7 +186,7 @@
 
 		for ( i = 0; i < headings.length; i++ ) {
 			heading     = headings[i];
-			targetID    = heading.nextElementSibling.id; //
+			targetID    = heading.nextElementSibling.id;
 			targetState = doc.getElementById(targetID).getAttribute('aria-hidden');
 
 			// setup new heading buttons
@@ -194,7 +208,6 @@
 			if ( targetState === 'false' ) {
 				ariaExpanded(newButton, true);
 				isCurrent(newButton, true);
-
 
 				/**
 				 * Check to see if this an accordion that needs a constantly
@@ -221,7 +234,16 @@
 		// Also need to pass in existing trigger arrays.
 		var thisAccordion = this.id.replace(/_panel.*$/g, '');
 		var thisTarget = doc.getElementById(this.getAttribute('aria-controls'));
-		var thisTriggers = doc.querySelectorAll('#' + thisAccordion + ' > .' + widgetHeading + ' .' + widgetTrigger);
+		var thisTriggers;
+
+
+
+		if ( doc.querySelectorAll('#' + thisAccordion.id + '> li').length ) {
+			thisTriggers = doc.querySelectorAll('#' + thisAccordion + ' li > .' + widgetHeading + ' .' + widgetTrigger);
+		}
+		else {
+			thisTriggers = doc.querySelectorAll('#' + thisAccordion + ' > .' + widgetHeading + ' .' + widgetTrigger);
+		}
 
 		e.preventDefault();
 
@@ -230,9 +252,9 @@
 
 
 	ARIAaccordion.togglePanel = function ( e, thisAccordion, targetPanel, triggers ) {
+		var getID;
 		var i;
 		var thisTrigger = e.target;
-		var getID;
 
 		// check to see if a trigger is disabled
 		if ( thisTrigger.getAttribute('aria-disabled') !== 'true' ) {
@@ -282,8 +304,15 @@
 			var keyEnd = 35;
 
 			var thisAccordion = this.id.replace(/_panel.*$/g, '');
+			var thisTriggers;
 
-			var thisTriggers = doc.querySelectorAll('#' + thisAccordion + ' > .' + widgetHeading + ' .' + widgetTrigger);
+			if ( doc.querySelectorAll('#' + thisAccordion.id + '> li').length ) {
+				thisTriggers = doc.querySelectorAll('#' + thisAccordion + ' li > .' + widgetHeading + ' .' + widgetTrigger);
+			}
+			else {
+				thisTriggers = doc.querySelectorAll('#' + thisAccordion + ' > .' + widgetHeading + ' .' + widgetTrigger);
+			}
+
 
 			switch ( keyCode ) {
 				/**
