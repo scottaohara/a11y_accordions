@@ -3,7 +3,7 @@
 ARIA accordion JavaScript pattern.  
 
 * [Accordion Demo Page](http://scottaohara.github.io/accessible_accordions/)  
-* Based on [ARIA 1.1 Authoring Practices](http://w3c.github.io/aria-practices/#accordion)  
+* Based on [ARIA Authoring Practices](http://w3c.github.io/aria-practices/#accordion)  
 * [Accessible Accordions blog article](http://www.scottohara.me/blog/2017/10/25/accordion-release.html)  
 
 
@@ -19,8 +19,7 @@ ARIA accordion JavaScript pattern.
     </p>
   </div>
   <!-- 
-    repeat for as many accordion panels
-    as one desires.
+    repeat for as many accordion panels needed
   -->
 </div>
 ```
@@ -68,11 +67,11 @@ When focus on the accordion triggers:
 * <kbd>Space</kbd> or <kbd>Enter</kbd> open/close the trigger's associated panel.  
 
 ### Note about VoiceOver
-When navigating a document by headings, VoiceOver will announce the text of the heading, the fact it contains a button, and the current state of the button (expanded or collapsed). It will then announce the heading level.
+When navigating a document by headings, or list items (if an accordion is in a list), VoiceOver will announce the text of the element, the fact it contains a button, and the current state of the button (expanded or collapsed). It will then announce the heading level.
 
-VoiceOver will then require a user to navigate into the heading <kbd>CTRL</kbd> + <kbd>Option</kbd> + <kbd>Shift</kbd> + <kbd>Down Arrow</kbd>, to actually interact with the accordion button itself.
+VoiceOver has its own special command to activating actionable elements: <kbd>Ctrl</kbd> + <kbd>Option</kbd> + <kbd>Space</kbd>, where screen readers like JAWS and NVDA do not.  If navigating by heading, the <kbd>Enter</kbd> or <kbd>Space</kbd> keys alone will not toggle the state of the accordion trigger. However the <kbd>Ctrl</kbd> + <kbd>Option</kbd> + <kbd>Space</kbd> keys will activate the trigger.  This is not a "bug", but just how VoiceOver works.  
 
-For reference, NVDA and JAWS do not require this additional step.
+If navigating by button element, or using <kbd>tab</kbd> to navigate the document, <kbd>Enter</kbd> and <kbd>Space</kbd> will activate the trigger on their own.
 
 
 ## License & Such  

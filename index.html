@@ -12,6 +12,7 @@
 				h1, h2, h3, h4 ,h5 ,h6, p { margin-top: 0; } hr { margin: 40px 0; }
 				p, li { line-height: 1.4; margin: 0 0 16px; } button, html [type="button"], [type="reset"], [type="submit"] { -webkit-appearance: button; cursor: pointer; font-family: inherit; font-style: inherit; } input[type="submit"]::-moz-focus-inner, button[type="submit"]::-moz-focus-inner, button:-moz-focusring, input:-moz-focusring { outline: 0; } button::-moz-focus-inner, input::-moz-focus-inner { border: 0; padding: 0; } code,kbd { background: #efefef; font-size: .825em; padding: 2px 4px; display: inline-block; line-height: 1; }
 				.content-area { padding: 2em 1.25em }
+				.content-area + .content-area { padding-top: 0; margin-top: -1.5em; }
 				.page { max-width: 700px; margin: auto; }
 				pre { display: block; }
 				pre code {
@@ -36,16 +37,17 @@
 	<body>
 
 		<div class="page">
-			<div class="content-area">
+			<header class="content-area">
 				<h1 class="txt-up-3">
 					Progressively enhanced ARIA accordions
 				</h1>
 
 				<p>
-					See the source code for <a href="https://github.com/scottaohara/accessible_accordions">this demo on GitHub</a>.
+					See the <a href="https://github.com/scottaohara/accessible_accordions">source code for this demo on GitHub</a>.
 				</p>
-
-		 		<p>
+			</header>
+			<main class="content-area">
+				<p>
 					The following accordion examples are enhanced from a basic HTML pattern of <span style="white-space: nowrap;">container > heading + sub-container</span>.
 				</p>
 				<p>For example:</p>
@@ -250,7 +252,7 @@
 					</li>
 				</ol>
 
-			</div> <!-- /.content-area -->
+			</main> <!-- /.content-area -->
 
 		</div> <!-- /.page -->
 
