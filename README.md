@@ -1,9 +1,9 @@
-# ARIA Accordions  
+# Accessible Accordions   
 
-ARIA accordion JavaScript pattern.  
+Accordion (disclosure widgets) UI pattern.  
 
-* [Accordion Demo Page](http://scottaohara.github.io/accessible_accordions/)  
-* Based on [ARIA Authoring Practices](http://w3c.github.io/aria-practices/#accordion)  
+* [Accordion Demo Page](https://scottaohara.github.io/accessible_accordions/)  
+* Based on [ARIA Authoring Practices](https://w3c.github.io/aria-practices/#accordion)  
 * [Accessible Accordions blog article](http://www.scottohara.me/blog/2017/10/25/accordion-release.html)  
 
 
