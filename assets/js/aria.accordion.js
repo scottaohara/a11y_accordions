@@ -10,8 +10,8 @@
 
 	ARIAaccordion.NS      = 'ARIAaccordion';
 	ARIAaccordion.AUTHOR  = 'Scott O\'Hara';
-	ARIAaccordion.VERSION = '2.1.0';
-	ARIAaccordion.LICENSE = 'https://github.com/scottaohara/accessible-components/blob/master/LICENSE.md';
+	ARIAaccordion.VERSION = '3.0.0';
+	ARIAaccordion.LICENSE = 'https://github.com/scottaohara/accessible_accordions/blob/master/LICENSE';
 
 	var widgetTrigger = 'accordion__trigger';
 	var widgetHeading = 'accordion__heading';
