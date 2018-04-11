@@ -1,6 +1,6 @@
-# Accessible Accordions   
+# Accessible Accordions & disclosure widgets   
 
-Accordion (disclosure widgets) UI pattern.  
+An accordion pattern consists of a series of related [disclosure widgets](http://w3c.github.io/aria-practices/#disclosure) (aka toggle buttons that show/hide their related content), that are stylistially related to each other, siblings of one another in the DOM (as either a series of sections or within a list element), and optionally programmatically aware of each other's current state.
 
 * [Accordion Demo Page](https://scottaohara.github.io/accessible_accordions/)  
 * Based on [ARIA Authoring Practices](https://w3c.github.io/aria-practices/#accordion)  
