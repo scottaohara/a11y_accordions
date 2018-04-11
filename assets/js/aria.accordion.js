@@ -10,12 +10,14 @@
 
 	ARIAaccordion.NS      = 'ARIAaccordion';
 	ARIAaccordion.AUTHOR  = 'Scott O\'Hara';
-	ARIAaccordion.VERSION = '3.0.0';
+	ARIAaccordion.VERSION = '3.1.0';
 	ARIAaccordion.LICENSE = 'https://github.com/scottaohara/accessible_accordions/blob/master/LICENSE';
 
 	var widgetTrigger = 'accordion__trigger';
 	var widgetHeading = 'accordion__heading';
 	var widgetPanel   = 'accordion__panel';
+
+	var idCounter = 0;
 
 	/**
 	 * Global Create
@@ -38,6 +40,8 @@
 
 		var widget = doc.querySelectorAll('[data-aria-accordion]');
 
+		idCounter += 1;
+
 		for ( i = 0; i < widget.length; i++ ) {
 			var t;
 			// Easy ref for widget
@@ -48,7 +52,7 @@
 			 * panels & headings for further setup functions.
 			 */
 			if ( !self.hasAttribute('id') ) {
-				self.id = 'acc_' + Math.floor(Math.random() * 999) + 1;
+				self.id = 'acc_' + idCounter + '-' + i;
 			}
 
 			/**
