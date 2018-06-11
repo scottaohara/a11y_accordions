@@ -10,7 +10,7 @@
 
 	ARIAaccordion.NS      = 'ARIAaccordion';
 	ARIAaccordion.AUTHOR  = 'Scott O\'Hara';
-	ARIAaccordion.VERSION = '3.1.0';
+	ARIAaccordion.VERSION = '3.1.1';
 	ARIAaccordion.LICENSE = 'https://github.com/scottaohara/accessible_accordions/blob/master/LICENSE';
 
 	var widgetTrigger = 'accordion__trigger';
@@ -240,8 +240,6 @@
 		var thisTarget = doc.getElementById(this.getAttribute('aria-controls'));
 		var thisTriggers;
 
-
-
 		if ( doc.querySelectorAll('#' + thisAccordion + '> li').length ) {
 			thisTriggers = doc.querySelectorAll('#' + thisAccordion + ' li > .' + widgetHeading + ' .' + widgetTrigger);
 		}
@@ -355,7 +353,6 @@
 				default:
 					break;
 			}
-
 		}
 	}; // ARIAaccordion.keytrolls()
 
@@ -392,6 +389,5 @@
 
 	// go go JavaScript
 	ARIAaccordion.init();
-
 
 })( window, document );

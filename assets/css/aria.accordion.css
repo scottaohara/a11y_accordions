@@ -40,11 +40,38 @@
 	cursor: pointer;
 	display: block;
 	font-size: inherit;
-	padding: .5em 1em;
+	padding: .5em 2em .5em 1em;
 	position: relative;
 	text-align: left;
 	width: 100%;
 	z-index: 2;
+}
+
+.js .accordion__trigger:after {
+  border-left: .4em solid transparent;
+  border-right: .4em solid transparent;
+  border-top: .5em solid #222;
+  bottom: 0;
+  content: '';
+  height: 0;
+  margin: auto;
+  position: absolute;
+  right: 1em;
+  top: 0;
+  transition: transform .2s ease-in-out;
+  transform-origin: center center;
+  transform: rotate(0deg);
+  width: 0;
+}
+
+.js .accordion__trigger:hover:after,
+.js .accordion__trigger:focus:after,
+.js .accordion__trigger[aria-expanded="true"]:after {
+	border-top-color: #fff;
+}
+
+.js .accordion__trigger[aria-expanded="true"]:after {
+	transform: rotate(180deg);
 }
 
 /**
