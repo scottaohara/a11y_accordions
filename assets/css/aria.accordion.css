@@ -40,6 +40,7 @@
 	cursor: pointer;
 	display: block;
 	font-size: inherit;
+	margin: 0;
 	padding: .5em 2em .5em 1em;
 	position: relative;
 	text-align: left;
