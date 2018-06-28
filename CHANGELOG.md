@@ -7,6 +7,7 @@ Optional feature to add support for up/down arrow keys
 ## [3.2.0] - 2018-06-28
 ### Added
 - package.json and registered as NPM package.
+- CHANGELOG.md
 
 ### Changed
 - `data-transition` attribute no longer allows for a value. Instead it merely adds a transition class to each accordion panel to allow for transitions for specific CSS properties to be customized in the CSS file.
