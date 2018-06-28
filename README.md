@@ -5,6 +5,19 @@ At its essence, an accordion component consists of a series of related [disclosu
 * Based on [ARIA Authoring Practices](https://w3c.github.io/aria-practices/#accordion)  
 * [Accessible Accordions blog article](https://www.scottohara.me/blog/2017/10/25/accordion-release.html)  
 
+## Install
+You can get this package [on npm](https://www.npmjs.com/package/a11y_accordions):
+```
+$ npm i a11y_accordions
+```
+
+Clone it:
+```
+$ git clone https://github.com/scottaohara/a11y_accordions.git
+```
+
+Or [download a zip of the repository](https://github.com/scottaohara/a11y_accordions/archive/master.zip).
+
 
 ## Minimum Required Mark-up  
 ```html
