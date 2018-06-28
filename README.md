@@ -43,13 +43,13 @@ The `data-aria-accordion` attribute is the key for initiating the process to con
 
 If an `id` is not pre-set on the accordion wrapper, then one will be auto generated. An ID is necessary to serve as the basis for populating generated IDs onto the child accordion panels. More on why these IDs are needed, later.
 
-When an accordion is identified, the setup script continues to run and identify each heading and panel within the accordion. The classes `accordion__heading` and `accordion__panel` are necessary for the setup process to run and appropriately identify these key pieces of the accordion.
+When an accordion is identified, the setup script continues to run and identify each heading and panel within the accordion. The different `data-aria-accordion-` attributes are necessary for the setup process to run and appropriately identify the key elements of the accordion.
 
 #### During the setup process the following occurs:  
 * The classes for an accordion, and its child headings and panels will be added, corresponding to the appropriate `data-` attributes.
 * The panels are hidden, and if a default panel was set (see options) an attribute of `aria-hidden="false"` will be set to that panel.  
 * The `id` of the accordion container is used as the basis to generate unique IDs for each of the panels of the accordion.  
-* a `<button>` is dynamically created and inserted into the `accordion__heading` element. The previous text of the heading is then inserted into this button. Presently, this strips out any previous HTML tags that were in the heading and only retains the text string.  
+* a `<button>` is dynamically created and inserted into the `data-aria-accordion-heading` element. The previous text of the heading is then inserted into this button. Presently, this strips out any previous HTML tags that were in the heading and only retains the text string.  
 * The `<button>` is given the class `accordion__trigger`, an `aria-controls` attribute, with the value set to the panel `id` that appears next in the DOM. While `aria-controls` is not presently useful in all assistive technologies, JAWS users will be given additional keys to press to begin interacting with the associated content.   
 * Depending on the initial state of the associated panel, e.g. is it set to be opened by default or not, the `<button>` will also receive the attribute `aria-expanded`, which will either have the value `true` or `false`. These value will indicate the current state of their associated panels, to uses of assistive technologies.   
 * If an accordion has the `data-constant` attribute set (see options), then the `<button>` with `aria-expanded="true"` will also have an `aria-disabled="true"` set to it.  
