@@ -44,7 +44,6 @@
 
 		for ( i = 0; i < widget.length; i++ ) {
 			var t;
-			// Easy ref for widget
 			self = widget[i];
 
 			/**
@@ -96,7 +95,9 @@
 			multiPanel = self.hasAttribute('data-multi');
 
 			/**
-			 *
+			 * If accordion panels are meant to transition, apply this inline style.
+			 * This is to help mitigate a quick flash of CSS being applied to the
+			 * no-js styling, and having an unwanted transition on initial page load.
 			 */
 			if ( self.hasAttribute('data-transition') ) {
 				var thesePanels = self.querySelectorAll('.' + widgetPanel);
