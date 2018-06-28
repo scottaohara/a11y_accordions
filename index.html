@@ -52,8 +52,8 @@
 				</p>
 				<p>For example:</p>
 				<pre><code>&lt;div class="accordion" data-aria-accordion>
-  &lt;h2 class="accordion__heading">Heading of my panel&lt;/h2>
-  &lt;div class="accordion__panel">
+  &lt;h2 data-aria-accordion-heading>Heading of my panel&lt;/h2>
+  &lt;div data-aria-accordion-panel>
     &lt;p>Content goes here&lt;/p>
   &lt;/div>
 &lt;/div></code></pre>
@@ -67,17 +67,16 @@
 					No default opened panel &amp; ability to open multiple panels at a time.
 				</h2>
 
-				<div class="accordion"
-					data-aria-accordion
+				<div data-aria-accordion
 					data-multi
-					data-transition=".36"
+					data-transition
 					data-default="none"
 					id="accGen">
 
-					<h3 class="accordion__heading">
+					<h3 data-aria-accordion-heading>
 						Chapter 1
 					</h3>
-					<div class="accordion__panel">
+					<div data-aria-accordion-panel>
 						<p>
 							Here is the first panel of content.
 						</p>
@@ -86,20 +85,20 @@
 						</p>
 					</div>
 
-					<h3 class="accordion__heading">
+					<h3 data-aria-accordion-heading>
 						Chapter 2
 					</h3>
-					<div class="accordion__panel">
+					<div data-aria-accordion-panel>
 						<p>
 							By using the <code>data-multi</code> attribute, multiple
 							panels can be opened at once.
 						</p>
 					</div>
 
-					<h3 class="accordion__heading">
+					<h3 data-aria-accordion-heading>
 						Chapter 3
 					</h3>
-					<div class="accordion__panel">
+					<div data-aria-accordion-panel>
 						<p>
 							The <code>data-default="none"</code> attribute is used to
 							indicate that no panel will be open by default, when the
@@ -114,13 +113,12 @@
 					Constantly opened panel &amp; nested accordion example
 				</h2>
 
-				<div class="accordion"
-					data-aria-accordion
+				<div data-aria-accordion
 					data-constant>
-					<h3 class="accordion__heading">
+					<h3 data-aria-accordion-heading>
 						Chapter 4
 					</h3>
-					<div class="accordion__panel">
+					<div data-aria-accordion-panel>
 						<p>
 							Using the <code>data-constant</code> attribute on the parent
 							accordion wrapper will require that an accordion panel
@@ -128,10 +126,10 @@
 						</p>
 					</div>
 
-					<h3 class="accordion__heading">
+					<h3 data-aria-accordion-heading>
 						Chapter 5
 					</h3>
-					<div class="accordion__panel">
+					<div data-aria-accordion-panel>
 						<p>
 							When panels are open, their corresponding trigger (button) will
 							be announced as "dimmed" or "unavailable", so it's clear that
@@ -139,23 +137,21 @@
 						</p>
 					</div>
 
-					<h2 class="accordion__heading">
+					<h2 data-aria-accordion-heading>
 						Chapter 6
 					</h2>
-					<div class="accordion__panel">
+					<div data-aria-accordion-panel>
 						<p>
 							Sometimes accordions are desired within accordions. Typically
 							this should be advised against, as it can create a more
 							complex UX than should really be necessary.
 						</p>
 
-						<div class="accordion"
-							data-aria-accordion
-							data-transition=".35">
-							<h3 class="accordion__heading">
+						<div data-aria-accordion data-transition>
+							<h3 data-aria-accordion-heading>
 								Chapter 6.1
 							</h3>
-							<div class="accordion__panel">
+							<div data-aria-accordion-panel>
 								<p>
 									As an example of how nested accordions need to
 									be considered their own component, and not related
@@ -164,10 +160,10 @@
 									the parent accordion.
 								</p>
 							</div>
-							<h3 class="accordion__heading">
+							<h3 data-aria-accordion-heading>
 								Chapter 6.2
 							</h3>
-							<div class="accordion__panel">
+							<div data-aria-accordion-panel>
 								<p>
 									Only a single panel of this accordion can be opened at time,
 									but this accordion also allows for the ability to collapse all panels.
@@ -183,22 +179,19 @@
 					Accordion with second panel opened by default, only one panel opened at a time, but all may be closed.
 				</h2>
 
-				<div class="accordion"
-					data-default="2"
-					data-aria-accordion
-					data-transition=".321">
-					<h3 class="accordion__heading">
+				<div data-default="2" data-aria-accordion data-transition>
+					<h3 data-aria-accordion-heading>
 						Chapter 7
 					</h3>
-					<div class="accordion__panel">
+					<div data-aria-accordion-panel>
 						<p>
 							Kind of like a choose your own adventure book, this panel was skipped over as Chapter 8 was opened by default.
 						</p>
 					</div>
-					<h3 class="accordion__heading">
+					<h3 data-aria-accordion-heading>
 						Chapter 8
 					</h3>
-					<div class="accordion__panel">
+					<div data-aria-accordion-panel>
 						<p>
 							This panel is set to be opened by default, when this particular accordion renders. This is accomplished via the <code>data-default="2"</code>, set on the parent accordion container.
 						</p>
@@ -211,14 +204,12 @@
 					<span>Demo 4:</span>
 					Accordion contained within an <code>&lt;ol></code>, with no panels open by default.
 				</h2>
-				<ol class="accordion"
-					data-aria-accordion
-					data-default="none">
+				<ol data-aria-accordion data-default="none">
 					<li>
-						<h3 class="accordion__heading">
+						<h3 data-aria-accordion-heading>
 							Chapter 9
 						</h3>
-						<div class="accordion__panel">
+						<div data-aria-accordion-panel>
 							<p>
 								Using the <code>data-constant</code> attribute on the parent
 								accordion wrapper will require that an accordion panel
@@ -227,10 +218,10 @@
 						</div>
 					</li>
 					<li>
-						<h3 class="accordion__heading">
+						<h3 data-aria-accordion-heading>
 							Chapter 10
 						</h3>
-						<div class="accordion__panel">
+						<div data-aria-accordion-panel>
 							<p>
 								When panels are open, their corresponding trigger (button) will
 								be announced as "dimmed" or "unavailable", so it's clear that
@@ -239,10 +230,10 @@
 						</div>
 					</li>
 					<li>
-						<h2 class="accordion__heading">
+						<h2 data-aria-accordion-heading>
 							Chapter 11
 						</h2>
-						<div class="accordion__panel">
+						<div data-aria-accordion-panel>
 							<p>
 								Sometimes accordions are desired within accordions. Typically
 								this sort of nesting should be avoided, as it can create a more
@@ -257,6 +248,6 @@
 		</div> <!-- /.page -->
 
 		<!-- unminified version: index.js -->
-		<script src="assets/js/aria.accordion.min.js"></script>
+		<script src="index.js"></script>
 	</body>
 </html>

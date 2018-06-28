@@ -18,14 +18,16 @@ $ git clone https://github.com/scottaohara/a11y_accordions.git
 
 Or [download a zip of the repository](https://github.com/scottaohara/a11y_accordions/archive/master.zip).
 
+The CSS for this component is included in `assets/css/`. The styles are dependent on a `.js` class being added to the `body` or `html` of the document, to allow for non-accordion styling were JavaScript to fail. Adjust these styles as necessary for your project.
+
 
 ## Minimum Required Mark-up  
 ```html
-<div class="accordion" data-aria-accordion>
-  <h3 class="accordion__heading">
+<div data-aria-accordion>
+  <h3 data-aria-accordion-heading>
     Heading Here
   </h3>
-  <div class="accordion__panel">
+  <div data-aria-accordion-panel>
     <p>
       Content here
     </p>
@@ -44,6 +46,7 @@ If an `id` is not pre-set on the accordion wrapper, then one will be auto genera
 When an accordion is identified, the setup script continues to run and identify each heading and panel within the accordion. The classes `accordion__heading` and `accordion__panel` are necessary for the setup process to run and appropriately identify these key pieces of the accordion.
 
 #### During the setup process the following occurs:  
+* The classes for an accordion, and its child headings and panels will be added, corresponding to the appropriate `data-` attributes.
 * The panels are hidden, and if a default panel was set (see options) an attribute of `aria-hidden="false"` will be set to that panel.  
 * The `id` of the accordion container is used as the basis to generate unique IDs for each of the panels of the accordion.  
 * a `<button>` is dynamically created and inserted into the `accordion__heading` element. The previous text of the heading is then inserted into this button. Presently, this strips out any previous HTML tags that were in the heading and only retains the text string.  
@@ -65,7 +68,7 @@ The following `data` attributes can be added to an accordion instance to alter t
 By placing this attribute on the accordion wrapper, it will indicate that an accordion panel must always be expanded. An `aria-disabled="true"` will be set to the `button` that controls the expanded panel. This attribute will indicate to assistive technologies that the `button` can not be currently interacted with.    
 
 ### `data-transition`  
-Giving this attribute a numeric value will apply a `style="transition: [val]s ease-in-out` to the accordion panels. Set this if you want an accordion panels to have open/close transitions applied to them. 
+Using this attribute on an accordion will add a modifier class to each child accordion panel where CSS transitions can be applied to transition the panel from hidden to revealed state.
 
 ### `data-multi`  
 This attribute requires no value. Setting it will allow multiple accordion panels, of a particular group, to be opened at once.  

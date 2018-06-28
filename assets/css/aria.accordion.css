@@ -1,3 +1,9 @@
+*,
+*:before,
+*:after {
+	box-sizing: border-box;
+}
+
 /**
  * Accordion container element
  */
@@ -24,13 +30,13 @@
 /**
  * Accordion Heading
  */
-.js .accordion__heading {
+.accordion__heading {
 	border: 1px solid #4464c2;
 	font-size: inherit;
 	margin: -1px 0 0;
 }
 
-.js .accordion__trigger {
+.accordion__trigger {
 	-webkit-appearance: none;
 	background-color: #fafafa;
 	border: none;
@@ -48,7 +54,7 @@
 	z-index: 2;
 }
 
-.js .accordion__trigger:after {
+.accordion__trigger:after {
   border-left: .4em solid transparent;
   border-right: .4em solid transparent;
   border-top: .5em solid #222;
@@ -65,13 +71,13 @@
   width: 0;
 }
 
-.js .accordion__trigger:hover:after,
-.js .accordion__trigger:focus:after,
-.js .accordion__trigger[aria-expanded="true"]:after {
+.accordion__trigger:hover:after,
+.accordion__trigger:focus:after,
+.accordion__trigger[aria-expanded="true"]:after {
 	border-top-color: #fff;
 }
 
-.js .accordion__trigger[aria-expanded="true"]:after {
+.accordion__trigger[aria-expanded="true"]:after {
 	transform: rotate(180deg);
 }
 
@@ -89,14 +95,14 @@
 }
  */
 
-.js .accordion__trigger:hover,
-.js .accordion__trigger:focus {
+.accordion__trigger:hover,
+.accordion__trigger:focus {
 	background-color: #0e3b5e;
 	color: #fff;
 	outline: none;
 }
 
-.js .accordion__trigger:focus {
+.accordion__trigger:focus {
 	box-shadow: inset 0 0 0 2px #1e82d1;
 }
 
@@ -110,25 +116,29 @@
 	background-color: #0a2a42;
 }
 
-.js .accordion__panel {
+.accordion__panel {
 	background-color: inherit;
 	max-height: 0vh;
 	overflow: hidden;
-	padding: .05em 1.25em;
+	padding: 0.001em 1.25em;
 	position: relative;
 	visibility: hidden;
 	z-index: 1;
 }
 
-.js .accordion__panel {
-	margin-top: -.1em;
+.accordion__panel--transition {
+	transition:
+		max-height .2s ease-in-out,
+		padding-top .2s ease-in-out,
+		padding-bottom .2s ease-in-out;
 }
 
-.js .accordion__panel > :last-child {
+
+.accordion__panel > :last-child {
 	margin-bottom: 0;
 }
 
-.js .accordion__panel[aria-hidden="false"] {
+.accordion__panel[aria-hidden="false"] {
 	max-height: 100vh;
 	overflow: auto;
 	padding: 1.25em;

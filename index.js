@@ -10,12 +10,16 @@
 
 	ARIAaccordion.NS      = 'ARIAaccordion';
 	ARIAaccordion.AUTHOR  = 'Scott O\'Hara';
-	ARIAaccordion.VERSION = '3.1.1';
+	ARIAaccordion.VERSION = '3.2.0';
 	ARIAaccordion.LICENSE = 'https://github.com/scottaohara/accessible_accordions/blob/master/LICENSE';
 
-	var widgetTrigger = 'accordion__trigger';
-	var widgetHeading = 'accordion__heading';
-	var widgetPanel   = 'accordion__panel';
+	var widgetClass   = 'accordion';
+	var widgetTriggerClass = widgetClass + '__trigger';
+	var widgetHeadingClass = widgetClass + '__heading';
+	var widgetPanelClass = widgetClass + '__panel';
+
+	var widgetHeading = '[data-aria-accordion-heading]';
+	var widgetPanel   = '[data-aria-accordion-panel]'
 
 	var idCounter = 0;
 
@@ -55,6 +59,13 @@
 			}
 
 			/**
+			 * Setup accordion classes
+			 */
+			if ( !self.classList.contains(widgetClass) ) {
+				self.classList.add(widgetClass);
+			}
+
+			/**
 			 * Get all panels & headings of an accordion pattern based
 			 * on a specific ID > direct child selector (this will ensure
 			 * that nested accordions don't get properties meant for
@@ -64,12 +75,12 @@
 			 * needs to be different.
 			 */
 			if ( doc.querySelectorAll('#' + self.id + '> li').length ) {
-				panels = doc.querySelectorAll('#' + self.id + ' li > .' + widgetPanel);
-				headings = doc.querySelectorAll('#' + self.id + ' li > .' + widgetHeading);
+				panels = doc.querySelectorAll('#' + self.id + ' li > ' + widgetPanel);
+				headings = doc.querySelectorAll('#' + self.id + ' li > ' + widgetHeading);
 			}
 			else {
-				panels = doc.querySelectorAll('#' + self.id + ' > .' + widgetPanel);
-				headings = doc.querySelectorAll('#' + self.id + ' > .' + widgetHeading);
+				panels = doc.querySelectorAll('#' + self.id + ' > ' + widgetPanel);
+				headings = doc.querySelectorAll('#' + self.id + ' > ' + widgetHeading);
 			}
 
 			/**
@@ -100,10 +111,10 @@
 			 * no-js styling, and having an unwanted transition on initial page load.
 			 */
 			if ( self.hasAttribute('data-transition') ) {
-				var thesePanels = self.querySelectorAll('.' + widgetPanel);
+				var thesePanels = self.querySelectorAll(widgetPanel);
 
 				for ( t = 0; t < thesePanels.length; t++ ) {
-					thesePanels[t].setAttribute('style', 'transition: ' + self.getAttribute('data-transition') + 's ease-in-out');
+					thesePanels[t].classList.add(widgetPanelClass + '--transition');
 				}
 			}
 
@@ -114,10 +125,10 @@
 			ARIAaccordion.setupHeadingButton(headings, constantPanel);
 
 			if ( doc.querySelectorAll('#' + self.id + '> li').length ) {
-				triggers = doc.querySelectorAll('#' + self.id + ' li > .' + widgetHeading + ' .' + widgetTrigger);
+				triggers = doc.querySelectorAll('#' + self.id + ' li > ' + widgetHeading + ' .' + widgetTriggerClass);
 			}
 			else {
-				triggers = doc.querySelectorAll('#' + self.id + ' > .' + widgetHeading + ' .' + widgetTrigger);
+				triggers = doc.querySelectorAll('#' + self.id + ' > ' + widgetHeading + ' .' + widgetTriggerClass);
 			}
 
 			/**
@@ -147,6 +158,8 @@
 
 			panel.setAttribute('id', panelID);
 			ariaHidden(panels[0], true);
+
+			panel.classList.add(widgetPanelClass);
 
 			/**
 			 * Set the accordion to have the appropriately
@@ -199,11 +212,13 @@
 			buttonText = heading.textContent;
 			// clear out the heading's content
 			heading.innerHTML = '';
+			// provide the heading with a class for styling
+			heading.classList.add(widgetHeadingClass);
 
 			newButton.setAttribute('type', 'button');
 			newButton.setAttribute('aria-controls', targetID);
 			newButton.setAttribute('id', targetID + '_trigger');
-			newButton.classList.add(widgetTrigger);
+			newButton.classList.add(widgetTriggerClass);
 
 			/**
 			 * Check the corresponding panel to see if it was set up
@@ -242,10 +257,10 @@
 		var thisTriggers;
 
 		if ( doc.querySelectorAll('#' + thisAccordion + '> li').length ) {
-			thisTriggers = doc.querySelectorAll('#' + thisAccordion + ' li > .' + widgetHeading + ' .' + widgetTrigger);
+			thisTriggers = doc.querySelectorAll('#' + thisAccordion + ' li > ' + widgetHeading + ' .' + widgetTriggerClass);
 		}
 		else {
-			thisTriggers = doc.querySelectorAll('#' + thisAccordion + ' > .' + widgetHeading + ' .' + widgetTrigger);
+			thisTriggers = doc.querySelectorAll('#' + thisAccordion + ' > ' + widgetHeading + ' .' + widgetTriggerClass);
 		}
 
 		e.preventDefault();
@@ -297,10 +312,9 @@
 
 
 	ARIAaccordion.keytrolls = function ( e ) {
-		if ( e.target.classList.contains(widgetTrigger) ) {
+		if ( e.target.classList.contains(widgetTriggerClass) ) {
 			var keyCode = e.keyCode || e.which;
 
-			// vars for keyboard keys
 			// var keyUp = 38;
 			// var keyDown = 40;
 			var keyHome = 36;
@@ -310,10 +324,10 @@
 			var thisTriggers;
 
 			if ( doc.querySelectorAll('#' + thisAccordion + '> li').length ) {
-				thisTriggers = doc.querySelectorAll('#' + thisAccordion + ' li > .' + widgetHeading + ' .' + widgetTrigger);
+				thisTriggers = doc.querySelectorAll('#' + thisAccordion + ' li > ' + widgetHeading + ' .' + widgetTriggerClass);
 			}
 			else {
-				thisTriggers = doc.querySelectorAll('#' + thisAccordion + ' > .' + widgetHeading + ' .' + widgetTrigger);
+				thisTriggers = doc.querySelectorAll('#' + thisAccordion + ' > ' + widgetHeading + ' .' + widgetTriggerClass);
 			}
 
 
