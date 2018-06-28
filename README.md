@@ -1,5 +1,5 @@
 # Accessible Accordions & disclosure widgets   
-At its essence, an accordion component consists of a series of related [disclosure widgets](http://w3c.github.io/aria-practices/#disclosure) (aka toggle buttons that show/hide their related content). These widgets are visually related to each other, and grouped siblings of one another in the DOM (as either a series of sections or within a list element). Optionally, though often, they are programmatically aware of each other's current state.
+At its essence, an accordion component consists of a series of related [disclosure widgets](http://w3c.github.io/aria-practices/#disclosure) (aka toggle buttons that show/hide their related content). These accordion widgets are visually related to each other, and are grouped siblings in the DOM (as either a series of content sections within a wrapper element, or within a list element). Often accordions are programmatically aware of their siblings' current state, though this is optional behavior.
 
 * [Accordion Demo Page](https://scottaohara.github.io/a11y_accordions/)  
 * Based on [ARIA Authoring Practices](https://w3c.github.io/aria-practices/#accordion)  
@@ -30,7 +30,7 @@ If an `id` is not pre-set on the accordion wrapper, then one will be auto genera
 
 When an accordion is identified, the setup script continues to run and identify each heading and panel within the accordion. The classes `accordion__heading` and `accordion__panel` are necessary for the setup process to run and appropriately identify these key pieces of the accordion.
 
-During the setup process the following occurs:  
+#### During the setup process the following occurs:  
 * The panels are hidden, and if a default panel was set (see options) an attribute of `aria-hidden="false"` will be set to that panel.  
 * The `id` of the accordion container is used as the basis to generate unique IDs for each of the panels of the accordion.  
 * a `<button>` is dynamically created and inserted into the `accordion__heading` element. The previous text of the heading is then inserted into this button. Presently, this strips out any previous HTML tags that were in the heading and only retains the text string.  
