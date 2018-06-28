@@ -2,7 +2,13 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
-Optional feature to add support for up/down arrow keys
+- Optional feature to add support for up/down arrow keys.
+- Allow for custom component classes to be declared via a data-class attribute.
+
+## [3.2.1] - 2018-06-28
+### Changed
+- Fixed instructions for CSS selectors in readme file.
+
 
 ## [3.2.0] - 2018-06-28
 ### Added

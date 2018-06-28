@@ -10,7 +10,7 @@
 
 	ARIAaccordion.NS      = 'ARIAaccordion';
 	ARIAaccordion.AUTHOR  = 'Scott O\'Hara';
-	ARIAaccordion.VERSION = '3.2.0';
+	ARIAaccordion.VERSION = '3.2.1';
 	ARIAaccordion.LICENSE = 'https://github.com/scottaohara/accessible_accordions/blob/master/LICENSE';
 
 	var widgetClass   = 'accordion';

@@ -18,7 +18,7 @@ $ git clone https://github.com/scottaohara/a11y_accordions.git
 
 Or [download a zip of the repository](https://github.com/scottaohara/a11y_accordions/archive/master.zip).
 
-The CSS for this component is included in `assets/css/`. The styles are dependent on a `.js` class being added to the `body` or `html` of the document, to allow for non-accordion styling were JavaScript to fail. Adjust these styles as necessary for your project.
+The CSS for this component is included in `assets/css/`. The classes are added to the accordion markup when the script/page loads. Presently, changing the class names requires a change in the JavaScript file and the CSS. Adjust the styles as necessary for your project.
 
 
 ## Minimum Required Mark-up  
