@@ -47,8 +47,8 @@
 		idCounter += 1;
 
 		for ( i = 0; i < widget.length; i++ ) {
-			var t;
 			self = widget[i];
+			var t;
 
 			/**
 			 * Check for IDs and create arrays of necessary
@@ -61,9 +61,8 @@
 			/**
 			 * Setup accordion classes
 			 */
-			if ( !self.classList.contains(widgetClass) ) {
-				self.classList.add(widgetClass);
-			}
+			self.classList.add(widgetClass);
+
 
 			/**
 			 * Get all panels & headings of an accordion pattern based
