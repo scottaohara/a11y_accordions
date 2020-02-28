@@ -198,7 +198,7 @@
 		var targetID;
 		var targetState;
 		var newButton;
-		var buttonText;
+		var headingNodes;
 		var i;
 
 		for ( i = 0; i < headings.length; i++ ) {
@@ -208,7 +208,7 @@
 
 			// setup new heading buttons
 			newButton  = doc.createElement('button');
-			buttonText = heading.textContent;
+			headingNodes = heading.cloneNode(true); // clone the heading contents
 			// clear out the heading's content
 			heading.innerHTML = '';
 			// provide the heading with a class for styling
@@ -243,7 +243,9 @@
 
 			// Add the Button & previous heading text
 			heading.appendChild(newButton);
-			newButton.appendChild(doc.createTextNode(buttonText));
+			while( headingNodes.childNodes.length > 0 ) {    // loop thru the heading content
+				newButton.appendChild(headingNodes.childNodes[0]);  // adding the nodes to the button
+			}
 		}
 	}; // ARIAaccordion.createButton
 
@@ -272,6 +274,9 @@
 		var getID;
 		var i;
 		var thisTrigger = e.target;
+		if (e.target.nodeName != 'BUTTON') {
+			thisTrigger = e.target.parentElement;
+		}
 
 		// check to see if a trigger is disabled
 		if ( thisTrigger.getAttribute('aria-disabled') !== 'true' ) {

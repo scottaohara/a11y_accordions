@@ -71,6 +71,18 @@
   width: 0;
 }
 
+/**
+ * Ensure the entire button area is clickable
+ */
+.accordion__trigger:before {
+  content : "";
+  position: absolute;
+  top     : -4px;
+  left    : 0;
+  width   : 100%;
+  height  : 100%;
+}
+
 .accordion__trigger:hover:after,
 .accordion__trigger:focus:after,
 .accordion__trigger[aria-expanded="true"]:after {
